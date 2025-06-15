@@ -23,7 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  background-image: url('/wallpaper_fw.png');
+  background-image: url('/wallpaper_fw.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
