@@ -1,22 +1,21 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faInstagram, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import Image from "next/image";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 
-const ZennIcon = () => {
-  return (
-    <Image 
-      src="/zenn-logo-only.svg"
-      alt="Zenn Icon"
-      width={40}
-      height={40}
-      className="w-10 h-10"
-      title="Zenn"
-    />
-  );
-};
+// const ZennIcon = () => {
+//   return (
+//     <Image 
+//       src="/zenn-logo-only.svg"
+//       alt="Zenn Icon"
+//       width={40}
+//       height={40}
+//       className="w-10 h-10"
+//       title="Zenn"
+//     />
+//   );
+// };
 
 export default function Home() {
   return (
