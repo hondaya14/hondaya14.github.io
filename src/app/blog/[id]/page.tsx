@@ -40,6 +40,7 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
       },
     }
   } catch (e) {
+    console.log(e)
     return {
       title: 'Article Not Found',
     }
@@ -116,6 +117,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
       </div>
     )
   } catch (e) {
+    console.log(e)
     notFound()
   }
 }

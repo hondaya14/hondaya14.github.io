@@ -3,11 +3,10 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Moon, Sun, Heart, Calendar, Clock, ArrowRight, Icon, ArrowLeft } from "lucide-react"
+import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import type { Article } from "@/lib/microcms"
-import Home from "../page"
 
 function stripHtml(html: string) {
   return html.replace(/<[^>]+>/g, '')
@@ -24,7 +23,6 @@ function readTime(html: string) {
 }
 
 export default function BlogClient({ articles }: { articles: Article[] }) {
-  const [isDark, setIsDark] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
@@ -131,7 +129,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                     id="hero-heading"
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 animate-liquid-text"
                   >
-                    Yasuhisa Honda's Blog
+                    Yasuhisa Honda&apos;s Blog
                   </h1>
                   <p className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto px-2 animate-liquid-fade-in gray-700 dark:text-gray-400">
                     Tech, work, indie hack, life, poem, and more.
@@ -234,7 +232,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
             <div className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
                 <span className="text-lg font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
-                  hondaya's blog
+                  hondaya&apos;s blog
                 </span>
               </div>
               <p className="text-sm text-foreground/60">
