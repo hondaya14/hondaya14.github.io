@@ -24,14 +24,13 @@ export type ArticleListResponse = {
   limit: number;
 };
 
-const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
 const API_KEY = process.env.MICROCMS_API_KEY;
 
 async function fetchFromMicroCMS(endpoint: string) {
-  if (!SERVICE_DOMAIN || !API_KEY) {
+  if (!API_KEY) {
     throw new Error('MicroCMS environment variables are not set');
   }
-  const res = await fetch(`https://${SERVICE_DOMAIN}.microcms.io/api/v1${endpoint}`, {
+  const res = await fetch(`https://hondaya.microcms.io/api/v1${endpoint}`, {
     headers: {
       'X-MICROCMS-API-KEY': API_KEY,
     },
