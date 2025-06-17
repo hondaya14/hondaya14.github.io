@@ -2,8 +2,6 @@ name: microCMS webhook
 on:
   workflow_dispatch:
   repository_dispatch: # microCMS webhook
-    types:
-      - microcms
 
 jobs:
   build:
