@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Moon, Sun, Heart, Calendar, Clock, ArrowRight } from "lucide-react"
+import { Moon, Sun, Heart, Calendar, Clock, ArrowRight, Icon, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import type { Article } from "@/lib/microcms"
+import Home from "../page"
 
 function stripHtml(html: string) {
   return html.replace(/<[^>]+>/g, '')
@@ -45,13 +46,8 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
     }
   }, [])
 
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle("dark")
-  }
-
   return (
-    <div className={`min-h-screen transition-all duration-1000 ${isDark ? "dark" : ""}`}>\
+    <div className={`min-h-screen transition-all duration-1000`}>
       <div className="bg-gradient-to-br from-gray-50 via-gray-100/30 to-gray-200/30 dark:from-gray-900 dark:via-gray-800/20 dark:to-gray-700/20 text-foreground min-h-screen overflow-hidden">
         {/* Liquid Background Elements */}
         <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -114,22 +110,10 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                   href="/"
                   className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full p-2 transition-all duration-300"
                 >
-                  <Heart className="h-6 w-6 text-gray-700 dark:text-gray-300 animate-pulse" aria-hidden="true" />
-                  <span className="text-xl font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
-                    Soulful Stories
-                  </span>
+                 <ArrowLeft className="h-4 w-4" />
+                <span>Back to Home</span>
                 </Link>
               </div>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleTheme}
-                className="rounded-full hover:bg-white/20 dark:hover:bg-gray-800/30 transition-all duration-300 hover:scale-110 hover:rotate-12"
-                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </Button>
             </div>
           </div>
         </header>
@@ -147,36 +131,10 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                     id="hero-heading"
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 animate-liquid-text"
                   >
-                    Stories that touch the {" "}
-                    <span className="text-gray-700 dark:text-gray-300 relative inline-block">
-                      <span className="bg-gradient-to-r from-gray-600 via-gray-800 to-gray-900 dark:from-gray-400 dark:via-gray-200 dark:to-gray-100 bg-clip-text text-transparent animate-liquid-gradient">
-                        soul
-                      </span>
-                      <svg
-                        className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3 animate-liquid-underline"
-                        viewBox="0 0 100 12"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M2 8c20-4 40-4 60 0s40 4 60 0"
-                          stroke="url(#liquid-gradient)"
-                          strokeWidth="2"
-                          fill="none"
-                          className="animate-liquid-draw"
-                        />
-                        <defs>
-                          <linearGradient id="liquid-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="currentColor" stopOpacity="0.3" />
-                            <stop offset="50%" stopColor="currentColor" stopOpacity="0.8" />
-                            <stop offset="100%" stopColor="currentColor" stopOpacity="0.3" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </span>
+                    Yasuhisa Honda's Blog
                   </h1>
-                  <p className="text-lg sm:text-xl text-foreground/80 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2 animate-liquid-fade-in">
-                    A collection of thoughtful reflections on life, love, growth, and the beautiful complexity of being
-                    human.
+                  <p className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto px-2 animate-liquid-fade-in gray-700 dark:text-gray-400">
+                    Tech, work, indie hack, life, poem, and more.
                   </p>
                 </div>
               </div>
@@ -184,14 +142,13 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           </div>
         </section>
 
-        {/* Articles List - No Cards */}
         <section className="py-12 sm:py-16" aria-labelledby="articles-heading">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2
               id="articles-heading"
               className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center animate-liquid-text"
             >
-              Latest Articles
+              Recent Articles
             </h2>
 
             <div className="max-w-4xl mx-auto space-y-8 sm:space-y-12">
@@ -210,6 +167,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                           alt=""
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale"
+                          unoptimized={true}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                       </div>
@@ -227,7 +185,15 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                         <div className="flex items-center text-xs text-foreground/60 gap-4">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" aria-hidden="true" />
-                            <time dateTime={article.publishedAt}>{new Date(article.publishedAt).toLocaleDateString()}</time>
+                            <time dateTime={article.publishedAt}>
+                              {(() => {
+                                const date = new Date(article.publishedAt);
+                                const year = date.getFullYear();
+                                const month = String(date.getMonth() + 1).padStart(2, '0');
+                                const day = String(date.getDate()).padStart(2, '0');
+                                return `${year}/${month}/${day}`;
+                              })()}
+                            </time>
                           </span>
                           <span className="flex items-center gap-1">
                             <Clock className="h-3 w-3" aria-hidden="true" />
@@ -252,12 +218,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                       <Button
                         variant="ghost"
                         className="group/btn p-0 h-auto bg-transparent hover:bg-transparent text-gray-700 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-200 transition-all duration-300"
-                        asChild
                       >
-                        <Link href={`/blog/${article.id}`}>
-                          Read More
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -272,13 +233,12 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <Heart className="h-5 w-5 text-gray-700 dark:text-gray-300" aria-hidden="true" />
                 <span className="text-lg font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
-                  Soulful Stories
+                  hondaya's blog
                 </span>
               </div>
               <p className="text-sm text-foreground/60">
-                &copy; {new Date().getFullYear()} Soulful Stories. All rights reserved.
+                &copy; {new Date().getFullYear()} Yasuhisa Honda. All rights reserved.
               </p>
             </div>
           </div>

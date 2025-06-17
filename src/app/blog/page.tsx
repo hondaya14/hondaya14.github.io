@@ -1,5 +1,5 @@
 import { getArticles } from '@/lib/microcms'
-import BlogClient from './BlogClient'
+import BlogClient from './blog'
 
 export const revalidate = 60
 
