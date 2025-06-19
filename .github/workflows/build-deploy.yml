@@ -57,8 +57,8 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('bun.lock') }}-
       - name: Install dependencies
         run: bun install
-      - name: Build with Next.js
-        run: bun next build
+      - name: Build
+        run: bun run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
