@@ -1,9 +1,5 @@
 import Script from 'next/script';
 
-type GoogleAnalyticsProps = {
-  gaId: string;
-};
-
 export default function GoogleAnalytics() {
   return (
     <>

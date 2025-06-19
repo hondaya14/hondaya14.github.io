@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>hondaya blog feed</title>
+        <link>https://hondaya.co</link>
+        <description>hondaya blog feed</description>
+        <lastBuildDate>Thu, 19 Jun 2025 15:37:54 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>ja</language>
+        <image>
+            <title>hondaya blog feed</title>
+            <url>https://hondaya.co/icon.png</url>
+            <link>https://hondaya.co</link>
+        </image>
+        <copyright>All rights reserved 2025</copyright>
+        <item>
+            <title><![CDATA[Integrate microCMS with Github Actions]]></title>
+            <link>https://hondaya.co/blog/k1hp1zc-1e</link>
+            <guid isPermaLink="false">https://hondaya.co/blog/k1hp1zc-1e</guid>
+            <pubDate>Tue, 17 Jun 2025 14:30:43 GMT</pubDate>
+            <description><![CDATA[新しい記事とかを公開したときにfeedを自動で生成したいなと思ったので、microCMSのwebhookを使って、GithubActionsを走らせるようにした。<a href="]]></description>
+            <content:encoded><![CDATA[<p>新しい記事とかを公開したときにfeedを自動で生成したいなと思ったので、microCMSのwebhookを使って、GithubActionsを走らせるようにした。</p><p><a href="https://help.microcms.io/ja/knowledge/webhook-github-actions-settings">https://help.microcms.io/ja/knowledge/webhook-github-actions-settings</a></p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Blogging using headless CMS]]></title>
+            <link>https://hondaya.co/blog/r_yxkggkg3</link>
+            <guid isPermaLink="false">https://hondaya.co/blog/r_yxkggkg3</guid>
+            <pubDate>Mon, 16 Jun 2025 14:02:04 GMT</pubDate>
+            <description><![CDATA[Ghostと迷った。ちょっとお試しでmicroCMS.]]></description>
+            <content:encoded><![CDATA[<p>Ghostと迷った。ちょっとお試しでmicroCMS.</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
