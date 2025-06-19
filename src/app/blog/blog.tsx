@@ -209,16 +209,17 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                           </span>
                         </div>
                       </div>
+　　　　　　　　　　　　　　　<Link
+                          href={`/blog/${article.id}`}
+                          className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md"
+                        >
                       <h3
                         id={`article-${article.id}-title`}
                         className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300"
                       >
-                        <Link
-                          href={`/blog/${article.id}`}
-                          className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md"
-                        >
+                        
                           {article.title}
-                        </Link>
+                        
                       </h3>
                       <p className="text-sm sm:text-base text-foreground/80 mb-4 sm:mb-6 leading-relaxed">
                         {excerpt(article.content)}
@@ -228,6 +229,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                         className="group/btn p-0 h-auto bg-transparent hover:bg-transparent text-gray-700 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-200 transition-all duration-300"
                       >
                       </Button>
+　　　　　　　　　　　　　　</Link>
                     </div>
                   </div>
                 </article>
