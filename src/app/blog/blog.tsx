@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Clock, ArrowLeft } from "lucide-react"
+import { Calendar, Clock, ArrowLeft, Rss } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import type { Article } from "@/lib/microcms"
@@ -110,6 +110,16 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                 >
                  <ArrowLeft className="h-4 w-4" />
                 <span>Back to Home</span>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/blog/feed.xml"
+                  className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full p-2 transition-all duration-300 bg-white/20 dark:bg-gray-800/20 hover:bg-white/30 dark:hover:bg-gray-800/30"
+                  title="RSS Feed"
+                >
+                  <Rss className="h-4 w-4" />
+                  <span>Subscribe to RSS</span>
                 </Link>
               </div>
             </div>

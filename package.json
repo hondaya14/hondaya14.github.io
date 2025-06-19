@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "bun run generate-rss && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen-rss": "bun run script/generate-rss.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -15,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "clsx": "^1.2.1",
     "dompurify": "^3.2.6",
+    "feed": "^5.1.0",
     "lucide-react": "^0.516.0",
     "next": "15.3.3",
     "react": "^19.0.0",
