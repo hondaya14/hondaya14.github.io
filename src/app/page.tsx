@@ -48,6 +48,9 @@ export default function Home() {
             <ZennIcon/>
           </Link> */}
         </div>
+        <div className="mt-6 text-center text-sm relative z-10">
+          <Link href="/privacy" className="underline">Privacy Policy</Link>
+        </div>
       </div>
     </div>
   );

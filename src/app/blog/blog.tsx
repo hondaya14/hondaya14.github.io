@@ -248,7 +248,8 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                 </span>
               </div>
               <p className="text-sm text-foreground/60">
-                &copy; {new Date().getFullYear()} Yasuhisa Honda. All rights reserved.
+                &copy; {new Date().getFullYear()} Yasuhisa Honda. All rights reserved. {' '}
+                <Link href="/privacy" className="underline">Privacy Policy</Link>
               </p>
             </div>
           </div>
