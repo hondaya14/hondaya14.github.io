@@ -1,13 +1,9 @@
 name: microCMS webhook
 on:
   workflow_dispatch:
-  repository_dispatch: # microCMS webhook
+  repository_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: test
-        run: |
-          echo "test"
+  deploy:
+    uses: ./.github/workflows/build-deploy.yml
+    secrets: inherit
