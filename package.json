@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run gen-rss && next build",
+    "build": "bun run gen-rss && bun run gen-sitemap && next build",
     "start": "next start",
     "lint": "next lint",
-    "gen-rss": "bun run script/generate-rss.ts"
+    "gen-rss": "bun run script/generate-rss.ts",
+    "gen-sitemap": "bun run script/generate-sitemap.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
