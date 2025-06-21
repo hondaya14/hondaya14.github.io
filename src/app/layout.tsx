@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import PWAHead from "@/components/PWAHead";
 import "./globals.css";
 
 
@@ -24,6 +25,8 @@ export default function RootLayout({
       <head>
         {/* Google Analytics */}
         <GoogleAnalytics/>
+        {/* PWA Manifest & Apple settings */}
+        <PWAHead/>
       </head>
       <body
         className={`${lineSeedFont.className} antialiased`}
