@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Calendar, ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
+import Script from 'next/script'
 
 export const revalidate = 60
 
@@ -103,6 +104,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             
             <div className="mt-8 prose-lg" dangerouslySetInnerHTML={{ __html: article.content }} />
           </article>
+          <Script src="https://platform.twitter.com/widgets.js" strategy="afterInteractive" />
         </main>
         
         <footer className="mt-12 py-8 border-t border-gray-200 dark:border-gray-800">
