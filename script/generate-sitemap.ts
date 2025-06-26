@@ -1,48 +1,61 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { Article, getArticles } from '../src/lib/microcms';
+import { getArticles } from '../src/lib/microcms';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DOMAIN = 'https://hondaya.co';
 
 async function generateSitemap() {
   try {
-    console.log('\uD83C\uDFC3\u200D\u2640\uFE0F Start generate sitemap...');
-
-    if (!process.env.MICROCMS_API_KEY) {
-      throw new Error('Not setted MICROCMS_API_KEY.');
-    }
-
-    const { contents } = await getArticles();
-    console.log(`\u2705 Got ${contents.length} articles`);
-
-    const siteURL = 'https://hondaya.co';
-    const staticPaths = ['', '/blog', '/privacy'];
-
-    const urls = [
-      ...staticPaths.map((p) => ({ loc: `${siteURL}${p}`, lastmod: new Date().toISOString() })),
-      ...contents.map((post: Article) => ({ loc: `${siteURL}/blog/${post.id}`, lastmod: post.publishedAt })),
+    const articles = await getArticles();
+    
+    const staticPages = [
+      {
+        url: DOMAIN,
+        lastmod: new Date().toISOString().split('T')[0],
+        changefreq: 'monthly',
+        priority: '1.0'
+      },
+      {
+        url: `${DOMAIN}/blog`,
+        lastmod: new Date().toISOString().split('T')[0],
+        changefreq: 'weekly',
+        priority: '0.8'
+      },
+      {
+        url: `${DOMAIN}/blog/feed.xml`,
+        lastmod: new Date().toISOString().split('T')[0],
+        changefreq: 'weekly',
+        priority: '0.6'
+      }
     ];
 
-    const xml =
-      '<?xml version="1.0" encoding="UTF-8"?>\n' +
-      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-      urls.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n') +
-      '\n</urlset>';
+    const blogPages = articles.contents.map(article => ({
+      url: `${DOMAIN}/blog/${article.id}`,
+      lastmod: article.updatedAt.split('T')[0],
+      changefreq: 'monthly',
+      priority: '0.7'
+    }));
 
-    const outputPath = path.join(__dirname, '../public/sitemap.xml');
-    fs.writeFileSync(outputPath, xml);
+    const allPages = [...staticPages, ...blogPages];
 
-    console.log(`\uD83C\uDD97 Generated sitemap: ${outputPath}`);
-    return true;
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages.map(page => `  <url>
+    <loc>${page.url}</loc>
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+    const publicDir = join(process.cwd(), 'public');
+    writeFileSync(join(publicDir, 'sitemap.xml'), sitemap);
+    
+    console.log('✅ Sitemap generated successfully');
+    console.log(`📄 Generated ${allPages.length} URLs`);
   } catch (error) {
-    console.error('\u274C Error occurred while generating sitemap:', error);
-    process.exit(1);
+    console.error('❌ Error generating sitemap:', error);
   }
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  generateSitemap();
-}
-
-export default generateSitemap;
+generateSitemap();
