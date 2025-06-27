@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation'
 import { Calendar, ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
-import SanitizedHtml from '@/components/SanitizedHtml'
 
 export const revalidate = 60
 
@@ -55,7 +54,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     const article = await getArticle(resolvedParams.id)
     const publishDate = new Date(article.publishedAt)
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`
-    
+
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900">
         <header className="sticky top-0 z-50 w-full  backdrop-blur-xs border-b border-gray-100 dark:border-gray-800">
@@ -102,10 +101,9 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                 </div>
               </div>
             )}
-            
-            <SanitizedHtml className="mt-8 prose-lg" html={article.content} />
+            <div dangerouslySetInnerHTML={{ __html: article.content }} />
           </article>
-          <Script src="https://platform.twitter.com/widgets.js" strategy="afterInteractive" />
+          <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
         </main>
         
         <footer className="mt-12 py-8 border-t border-gray-200 dark:border-gray-800">
