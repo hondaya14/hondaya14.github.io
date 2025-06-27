@@ -6,6 +6,17 @@ interface HTMLContentProps {
   content: string
 }
 
+// Twitter widgets の型定義
+interface TwitterWidgets {
+  load: () => void
+}
+
+interface WindowWithTwitter extends Window {
+  twttr?: {
+    widgets: TwitterWidgets
+  }
+}
+
 export function HTMLContent({ content }: HTMLContentProps) {
   const [isClient, setIsClient] = useState(false)
 
@@ -13,8 +24,11 @@ export function HTMLContent({ content }: HTMLContentProps) {
     setIsClient(true)
     
     // Twitterウィジェットの再読み込み
-    if (typeof window !== 'undefined' && (window as any).twttr) {
-      (window as any).twttr.widgets.load()
+    if (typeof window !== 'undefined') {
+      const windowWithTwitter = window as WindowWithTwitter
+      if (windowWithTwitter.twttr?.widgets) {
+        windowWithTwitter.twttr.widgets.load()
+      }
     }
   }, [])
 
