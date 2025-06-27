@@ -96,7 +96,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                   </div>
                 </div>
                 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent leading-tight">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent leading-tight">
                   {article.title}
                 </h1>
                 
@@ -121,7 +121,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                   </div>
                 )}
                 
-                <div className="prose-lg dark:prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-a:break-words prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:break-words prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:overflow-x-auto prose-blockquote:border-l-purple-500 prose-blockquote:bg-purple-50/50 dark:prose-blockquote:bg-purple-900/20 break-words overflow-wrap-anywhere">
+                <div className="prose sm:prose-lg dark:prose dark:sm:prose-lg prose-gray dark:prose-invert max-w-none prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-a:break-words prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:break-words prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:overflow-x-auto prose-blockquote:border-l-purple-500 prose-blockquote:bg-purple-50/50 dark:prose-blockquote:bg-purple-900/20 break-words overflow-wrap-anywhere">
                   <HTMLContent content={article.content || ''} />
                 </div>
               </article>
