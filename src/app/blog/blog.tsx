@@ -25,8 +25,11 @@ function readTime(html: string) {
 export default function BlogClient({ articles }: { articles: Article[] }) {
   const [scrolled, setScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
     }
@@ -56,14 +59,16 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           <div className="absolute bottom-20 -right-20 w-72 h-72 bg-gradient-to-br from-gray-200/20 to-gray-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-liquid-wave"></div>
 
           {/* Dynamic mouse-following liquid */}
-          <div
-            className="absolute w-64 h-64 bg-gradient-to-br from-gray-400/10 to-gray-600/10 rounded-full mix-blend-multiply filter blur-2xl opacity-50 transition-all duration-1000 ease-out pointer-events-none"
-            style={{
-              left: mousePosition.x - 128,
-              top: mousePosition.y - 128,
-              transform: `scale(${1 + Math.sin(Date.now() * 0.001) * 0.1})`,
-            }}
-          ></div>
+          {isClient && (
+            <div
+              className="absolute w-64 h-64 bg-gradient-to-br from-gray-400/10 to-gray-600/10 rounded-full mix-blend-multiply filter blur-2xl opacity-50 transition-all duration-1000 ease-out pointer-events-none"
+              style={{
+                left: mousePosition.x - 128,
+                top: mousePosition.y - 128,
+                transform: `scale(${1 + Math.sin(Date.now() * 0.001) * 0.1})`,
+              }}
+            ></div>
+          )}
 
           {/* Flowing wave overlay */}
           <div className="absolute inset-0 opacity-30">
@@ -170,18 +175,23 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                   <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 group-hover:translate-x-2 transition-transform duration-500">
                     <div className="sm:w-1/3">
                       <div className="relative h-48 sm:h-40 overflow-hidden rounded-xl">
-                        <Image
-                          src={article.eyecatch?.url || "/vercel.svg"}
-                          alt=""
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale"
-                          unoptimized={true}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                        <Link
+                          href={`/blog/${article.id}`}
+                          className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md decoration-none"
+                        > 
+                          <Image
+                            src={article.eyecatch?.url || "/vercel.svg"}
+                            alt=""
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale"
+                            unoptimized={true}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                        </Link>
                       </div>
                     </div>
                     <div className="sm:w-2/3">
-                      <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <div className="flex flex-wrap items-center gap-3">
                         {article.category && (
                           <Badge
                             variant="secondary"
@@ -209,27 +219,19 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                           </span>
                         </div>
                       </div>
-　　　　　　　　　　　　　　　<Link
+                      <Link
                           href={`/blog/${article.id}`}
-                          className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md"
+                          className="focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md no-underline decoration-none"
+                      > 
+                        <h3 id={`article-${article.id}-title`}
+                          className="text-xl sm:text-2xl lg:text-3xl font-bold sm:mb-4 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300 no-underline"
                         >
-                      <h3
-                        id={`article-${article.id}-title`}
-                        className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300"
-                      >
-                        
-                          {article.title}
-                        
-                      </h3>
-                      <p className="text-sm sm:text-base text-foreground/80 mb-4 sm:mb-6 leading-relaxed">
-                        {excerpt(article.content)}
-                      </p>
-                      <Button
-                        variant="ghost"
-                        className="group/btn p-0 h-auto bg-transparent hover:bg-transparent text-gray-700 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-200 transition-all duration-300"
-                      >
-                      </Button>
-　　　　　　　　　　　　　　</Link>
+                            {article.title}
+                        </h3>
+                        <p className="text-sm sm:text-base text-foreground/80 mb-4 sm:mb-6 leading-relaxed no-underline">
+                          {excerpt(article.content)}
+                        </p>
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -248,7 +250,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                 </span>
               </div>
               <p className="text-sm text-foreground/60">
-                &copy; {new Date().getFullYear()} Yasuhisa Honda. All rights reserved. {' '}
+                &copy; {isClient ? new Date().getFullYear() : '2024'} Yasuhisa Honda. All rights reserved. {' '}
                 <Link href="/privacy" className="underline">Privacy Policy</Link>
               </p>
             </div>

@@ -1,0 +1,40 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+interface HTMLContentProps {
+  content: string
+}
+
+export function HTMLContent({ content }: HTMLContentProps) {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+    
+    // Twitterウィジェットの再読み込み
+    if (typeof window !== 'undefined' && (window as any).twttr) {
+      (window as any).twttr.widgets.load()
+    }
+  }, [])
+
+  if (!isClient) {
+    // サーバーサイドでは基本的なHTMLのみ表示（スクリプトタグを除去）
+    const serverContent = content
+      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+      .replace(/<blockquote[^>]*class="twitter-tweet"[^>]*>[\s\S]*?<\/blockquote>/gi, 
+        '<div class="twitter-placeholder">Loading Twitter embed...</div>')
+    
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: serverContent }}
+      />
+    )
+  }
+
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
+  )
+}

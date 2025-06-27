@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Calendar, ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
+import { HTMLContent } from '@/components/HTMLContent'
 
 export const revalidate = 60
 
@@ -77,7 +78,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
           <article className="prose dark:prose-invert max-w-3xl mx-auto">
             <div className="mb-6 flex items-center text-sm text-gray-500 dark:text-gray-400">
               <Calendar className="h-4 w-4 mr-1" />
-              <time dateTime={article.publishedAt}>{formattedDate}</time>
+              Published:&nbsp;<time dateTime={article.publishedAt}>{formattedDate}</time>
             </div>
             
             <h1 className="text-3xl sm:text-4xl font-bold mb-6">{article.title}</h1>
@@ -101,7 +102,9 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                 </div>
               </div>
             )}
-            <div dangerouslySetInnerHTML={{ __html: article.content }} />
+            <div className="prose-a:underline">
+              <HTMLContent content={article.content || ''} />
+            </div>
           </article>
           <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
         </main>
@@ -110,7 +113,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                &copy; {new Date().getFullYear()} Yasuhisa Honda. All rights reserved. {' '}
+                &copy; 2024 Yasuhisa Honda. All rights reserved. {' '}
                 <Link href="/privacy" className="underline">Privacy Policy</Link>
               </p>
             </div>
