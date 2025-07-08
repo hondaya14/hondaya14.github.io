@@ -1,11 +1,11 @@
 import { getArticle, getArticles } from '@/lib/microcms'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Calendar, ArrowLeft } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
 import { HTMLContent } from '@/components/HTMLContent'
+import { ExpandableImage } from '@/components/ExpandableImage'
 
 export const revalidate = 60
 
@@ -105,14 +105,15 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                 <h1 className="text-3xl font-bold mb-6 text-[#4C4948]">{article.title}</h1>
 
                 {article.eyecatch?.url && (
-                  <Image
-                    src={article.eyecatch.url}
-                    alt=""
-                    width={800}
-                    height={400}
-                    className="rounded mb-6"
-                    unoptimized={true}
-                  />
+                  <div className="flex justify-center mb-6">
+                    <ExpandableImage
+                      src={article.eyecatch.url}
+                      alt=""
+                      width={400}
+                      height={200}
+                      className="rounded"
+                    />
+                  </div>
                 )}
 
                 <HTMLContent content={article.content || ''} />

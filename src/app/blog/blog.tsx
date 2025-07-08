@@ -72,13 +72,19 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                   <div className="flex flex-col sm:flex-row gap-6">
                     <div className="sm:w-1/3">
                       <Link href={`/blog/${article.id}`} className="block relative h-40 rounded overflow-hidden">
-                        <Image
-                          src={article.eyecatch?.url || "/vercel.svg"}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          unoptimized={true}
-                        />
+                        {article.eyecatch?.url ? (
+                          <Image
+                            src={article.eyecatch.url}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            unoptimized={true}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-[#EFEEDF] border border-[#4C4948] flex items-center justify-center">
+                            <span className="text-4xl">🫠</span>
+                          </div>
+                        )}
                       </Link>
                     </div>
                     <div className="sm:w-2/3 space-y-2">
