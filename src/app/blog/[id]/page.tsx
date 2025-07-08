@@ -57,10 +57,10 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`
 
     return (
-      <div className="min-h-screen bg-[#f7f7f7] text-[#222] font-sans">
-        <header className="sticky top-0 z-50 border-b bg-[#f7f7f7]/90 backdrop-blur">
+      <div className="min-h-screen bg-[#EFEEDF] text-[#4C4948] font-sans">
+        <header className="sticky top-0 z-50 border-b border-[#4C4948] bg-[#EFEEDF]/90 backdrop-blur">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center">
-            <Link href="/blog" className="flex items-center space-x-2">
+            <Link href="/blog" className="flex items-center space-x-2 text-[#4C4948]">
               <ArrowLeft className="h-4 w-4" />
               <span>Back to blog</span>
             </Link>
@@ -68,33 +68,95 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
         </header>
 
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <article className="prose mx-auto">
-            <div className="mb-4 text-sm text-gray-600 flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              <time dateTime={article.publishedAt}>{formattedDate}</time>
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left Sidebar */}
+            <aside className="hidden lg:block w-64 shrink-0">
+              <div className="sticky top-24 space-y-6">
+                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
+                  <h3 className="font-semibold mb-3 text-[#4C4948]">Advertisement</h3>
+                  <div className="h-64 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                    Ad Space
+                  </div>
+                </div>
+                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
+                  <h3 className="font-semibold mb-3 text-[#4C4948]">Related Posts</h3>
+                  <div className="space-y-2">
+                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      Related Post
+                    </div>
+                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      Related Post
+                    </div>
+                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      Related Post
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Main Content */}
+            <div className="flex-1 max-w-4xl">
+              <article className="prose mx-auto">
+                <div className="mb-4 text-sm text-[#4C4948] flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <time dateTime={article.publishedAt}>{formattedDate}</time>
+                </div>
+                <h1 className="text-3xl font-bold mb-6 text-[#4C4948]">{article.title}</h1>
+
+                {article.eyecatch?.url && (
+                  <Image
+                    src={article.eyecatch.url}
+                    alt=""
+                    width={800}
+                    height={400}
+                    className="rounded mb-6"
+                    unoptimized={true}
+                  />
+                )}
+
+                <HTMLContent content={article.content || ''} />
+              </article>
             </div>
-            <h1 className="text-3xl font-bold mb-6">{article.title}</h1>
 
-            {article.eyecatch?.url && (
-              <Image
-                src={article.eyecatch.url}
-                alt=""
-                width={800}
-                height={400}
-                className="rounded mb-6"
-                unoptimized={true}
-              />
-            )}
-
-            <HTMLContent content={article.content || ''} />
-          </article>
+            {/* Right Sidebar */}
+            <aside className="hidden lg:block w-64 shrink-0">
+              <div className="sticky top-24 space-y-6">
+                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
+                  <h3 className="font-semibold mb-3 text-[#4C4948]">Table of Contents</h3>
+                  <div className="space-y-2">
+                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      TOC Item
+                    </div>
+                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      TOC Item
+                    </div>
+                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      TOC Item
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
+                  <h3 className="font-semibold mb-3 text-[#4C4948]">Share</h3>
+                  <div className="space-y-2">
+                    <div className="h-10 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      Share Button
+                    </div>
+                    <div className="h-10 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
+                      Share Button
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
           <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
         </main>
 
-        <footer className="py-8 border-t text-center">
-          <p className="text-sm">
+        <footer className="py-8 border-t border-[#4C4948] text-center">
+          <p className="text-sm text-[#4C4948]">
             &copy; 2024 Yasuhisa Honda. All rights reserved.{' '}
-            <Link href="/privacy" className="underline">Privacy Policy</Link>
+            <Link href="/privacy" className="underline text-[#4C4948]">Privacy Policy</Link>
           </p>
         </footer>
       </div>
