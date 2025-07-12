@@ -44,7 +44,7 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
               <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
                 <h3 className="font-semibold mb-3 text-[#4C4948]">Advertisement</h3>
                 <div className="h-64 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                  Ad Space
+
                 </div>
               </div>
               <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
