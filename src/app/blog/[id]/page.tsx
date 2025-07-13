@@ -73,9 +73,8 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             <aside className="hidden lg:block w-64 shrink-0">
               <div className="sticky top-24 space-y-6">
                 <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                  <h3 className="font-semibold mb-3 text-[#4C4948]">Advertisement</h3>
                   <div className="h-64 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Ad Space
+
                   </div>
                 </div>
                 <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
