@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
 import "./globals.css";
 
@@ -25,6 +26,8 @@ export default function RootLayout({
       <head>
         {/* Google Analytics */}
         <GoogleAnalytics/>
+        {/* Google AdSense */}
+        <GoogleAdSense/>
         {/* PWA Manifest & Apple settings */}
         <PWAHead/>
       </head>
