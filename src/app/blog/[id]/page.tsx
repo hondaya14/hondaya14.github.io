@@ -71,31 +71,10 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Sidebar */}
             <aside className="hidden lg:block w-64 shrink-0">
-              <div className="sticky top-24 space-y-6">
-                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                  <div className="h-64 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-
-                  </div>
-                </div>
-                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                  <h3 className="font-semibold mb-3 text-[#4C4948]">Related Posts</h3>
-                  <div className="space-y-2">
-                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      Related Post
-                    </div>
-                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      Related Post
-                    </div>
-                    <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      Related Post
-                    </div>
-                  </div>
-                </div>
-              </div>
             </aside>
 
             {/* Main Content */}
-            <div className="flex-1 max-w-4xl">
+            <div className="flex-1 lg:max-w-4xl">
               <article className="prose mx-auto">
                 <div className="mb-4 text-sm text-[#4C4948] flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -121,33 +100,6 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
 
             {/* Right Sidebar */}
             <aside className="hidden lg:block w-64 shrink-0">
-              <div className="sticky top-24 space-y-6">
-                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                  <h3 className="font-semibold mb-3 text-[#4C4948]">Table of Contents</h3>
-                  <div className="space-y-2">
-                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      TOC Item
-                    </div>
-                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      TOC Item
-                    </div>
-                    <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      TOC Item
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                  <h3 className="font-semibold mb-3 text-[#4C4948]">Share</h3>
-                  <div className="space-y-2">
-                    <div className="h-10 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      Share Button
-                    </div>
-                    <div className="h-10 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                      Share Button
-                    </div>
-                  </div>
-                </div>
-              </div>
             </aside>
           </div>
           <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />

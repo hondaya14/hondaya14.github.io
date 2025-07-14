@@ -40,31 +40,10 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0">
-            <div className="sticky top-24 space-y-6">
-              <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                <div className="h-64 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-
-                </div>
-              </div>
-              <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                <h3 className="font-semibold mb-3 text-[#4C4948]">Links</h3>
-                <div className="space-y-2">
-                  <div className="h-12 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Link Space
-                  </div>
-                  <div className="h-12 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Link Space
-                  </div>
-                  <div className="h-12 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Link Space
-                  </div>
-                </div>
-              </div>
-            </div>
           </aside>
 
           {/* Main Content */}
-          <div className="flex-1 max-w-4xl">
+          <div className="flex-1 lg:max-w-4xl">
             <div className="space-y-12">
               {articles.map((article) => (
                 <article key={article.id} className="border-b border-[#4C4948] pb-8 last:border-b-0">
@@ -109,36 +88,6 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
 
           {/* Right Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0">
-            <div className="sticky top-24 space-y-6">
-              <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                <h3 className="font-semibold mb-3 text-[#4C4948]">Popular Posts</h3>
-                <div className="space-y-2">
-                  <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Popular Post
-                  </div>
-                  <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Popular Post
-                  </div>
-                  <div className="h-16 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Popular Post
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[#EFEEDF] rounded-lg p-6 shadow-sm border border-[#4C4948]">
-                <h3 className="font-semibold mb-3 text-[#4C4948]">Categories</h3>
-                <div className="space-y-2">
-                  <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Category
-                  </div>
-                  <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Category
-                  </div>
-                  <div className="h-8 bg-[#EFEEDF] border border-[#4C4948] rounded flex items-center justify-center text-[#4C4948]">
-                    Category
-                  </div>
-                </div>
-              </div>
-            </div>
           </aside>
         </div>
       </main>
