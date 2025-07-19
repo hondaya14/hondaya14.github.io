@@ -75,7 +75,7 @@ export const MDXComponents = {
   
   // ブロッククォート
   blockquote: ({ children, ...props }: BlockquoteProps) => (
-    <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-700 dark:text-gray-300" {...props}>
+    <blockquote {...props}>
       {children}
     </blockquote>
   ),

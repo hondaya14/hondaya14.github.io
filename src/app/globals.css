@@ -133,3 +133,32 @@ article a.no-underline h3,
 article a.no-underline p {
   text-decoration: none !important;
 }
+
+/* Blockquote styling */
+
+blockquote {
+  border-left: 4px solid #4C4948;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #4C4948;
+}
+
+blockquote::before {
+  content: "\201C"; /* left double quotation mark */
+  font-size: 2rem;
+  line-height: 0;
+  margin-right: 0.25rem;
+  vertical-align: -0.4rem;
+  color: #4C4948;
+}
+
+@media (prefers-color-scheme: dark) {
+  blockquote {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  blockquote::before {
+    color: #ffffff;
+  }
+}
