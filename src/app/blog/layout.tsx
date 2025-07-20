@@ -6,7 +6,7 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#f7f7f7] text-[#222] font-sans">
+    <div className="min-h-screen bg-[#101114] text-white font-sans">
       {children}
     </div>
   );

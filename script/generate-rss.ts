@@ -37,7 +37,7 @@ async function generateRssFeed() {
         rss2: `${siteURL}/blog/feed.xml`,
       },
       author: {
-        name: 'Yasuhisa Honda',
+        name: 'hondaya.co',
         link: siteURL,
       },
     });
@@ -54,7 +54,7 @@ async function generateRssFeed() {
         content: post.content,
         author: [
           {
-            name: 'Yasuhisa Honda',
+            name: 'hondaya.co',
             link: siteURL,
           },
         ],
