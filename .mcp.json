@@ -1,13 +1,5 @@
 {
   "mcpServers": {
-    "eslint": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "@eslint/mcp@latest"
-      ],
-      "env": {}
-    },
     "playwright": {
       "type": "stdio",
       "command": "npx",
