@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
-
-import localFont from "next/font/local";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
+import { notoSansJp } from "@/lib/fonts";
 import "./globals.css";
-
-
-
-export const lineSeedFont = localFont({
-  src: './LINESeedSans_W_XBd.woff2',
-})
-const notoSansJp = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-noto-sans-jp',
-})
 
 export const metadata: Metadata = {
   title: "hondaya.co",

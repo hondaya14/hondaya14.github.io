@@ -6,7 +6,7 @@ import { Metadata } from 'next'
 import Script from 'next/script'
 import { HTMLContent } from '@/components/HTMLContent'
 import { ExpandableImage } from '@/components/ExpandableImage'
-import { lineSeedFont } from '../../layout'
+import { lineSeedFont } from '@/lib/fonts'
 
 export const revalidate = 60
 

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
-import { lineSeedFont } from "./layout";
+import { lineSeedFont } from "@/lib/fonts";
 
 // const ZennIcon = () => {
 //   return (
