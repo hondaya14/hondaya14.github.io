@@ -23,11 +23,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  background-image: url('/fw.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   font-weight: 400;
 }
 
@@ -198,6 +193,58 @@ article a.no-underline p {
   --tw-prose-pre-bg: #1f2937;
   --tw-prose-th-borders: #374151;
   --tw-prose-td-borders: #4b5563;
+}
+
+/* Table styles for proper wrapping */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+.prose table th,
+.prose table td {
+  padding: 0.75rem;
+  border: 1px solid var(--tw-prose-th-borders);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.prose table th {
+  background-color: #374151;
+  font-weight: 600;
+}
+
+.prose table td {
+  background-color: #1f2937;
+}
+
+/* Table wrapper for horizontal scrolling */
+.prose .table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #374151;
+}
+
+.prose .table-wrapper table {
+  margin: 0;
+  border-radius: 0;
+  display: table;
+  white-space: nowrap;
+}
+
+/* Responsive table adjustments */
+@media (max-width: 768px) {
+  .prose table th,
+  .prose table td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Blockquote styling */

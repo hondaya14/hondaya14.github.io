@@ -48,6 +48,11 @@ export function HTMLContent({ content }: HTMLContentProps) {
       }
     })
     
+    // テーブルを横スクロール可能なラッパーで囲む
+    $('table').each((_, element) => {
+      $(element).wrap('<div class="table-wrapper"></div>')
+    })
+    
     setProcessedContent($.html())
     
     // Twitterウィジェットの再読み込み
