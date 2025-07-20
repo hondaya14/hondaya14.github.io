@@ -1,7 +1,7 @@
 {
-  "name": "Yasuhisa Honda",
-  "short_name": "Honda",
-  "description": "Personal website of Honda Yasuhisa",
+  "name": "hondaya.co",
+  "short_name": "hondaya.co",
+  "description": "Personal website of hondaya.co",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

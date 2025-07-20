@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
+import { lineSeedFont } from "./layout";
 
 // const ZennIcon = () => {
 //   return (
@@ -19,11 +20,11 @@ import { faRss } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#101114] text-foreground">
       <div className="relative p-8 sm:p-12 rounded-lg">
         <div className="absolute inset-0 rounded-md backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100"></div>
-        <h1 className="relative text-4xl sm:text-6xl font-bold text-center z-10">
-          Honda Yasuhisa
+        <h1 className={`relative text-4xl sm:text-6xl font-semibold text-center z-10 ${lineSeedFont.className}`}>
+          hondaya.co
         </h1>
         <h3 className="relative mt-4 text-xl text-center z-10">
           Software Engineer

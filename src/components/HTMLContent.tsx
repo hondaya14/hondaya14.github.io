@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import hljs from 'highlight.js'
+import * as cheerio from 'cheerio'
+import 'highlight.js/styles/github-dark.css'
 
 interface HTMLContentProps {
   content: string
@@ -18,10 +21,34 @@ interface WindowWithTwitter extends Window {
 }
 
 export function HTMLContent({ content }: HTMLContentProps) {
+  const [processedContent, setProcessedContent] = useState(content)
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
+    
+    // シンタックスハイライトの処理
+    const $ = cheerio.load(content)
+    
+    $('pre code').each((_, element) => {
+      const codeText = $(element).text()
+      const result = hljs.highlightAuto(codeText)
+      
+      // コードブロックにクラスと言語情報を追加
+      $(element).html(result.value)
+      $(element).addClass('hljs')
+      
+      // 親のpreタグにコードブロック用のクラスを追加
+      const preElement = $(element).parent('pre')
+      preElement.addClass('code-block')
+      
+      // 言語名の表示用
+      if (result.language) {
+        preElement.attr('data-language', result.language)
+      }
+    })
+    
+    setProcessedContent($.html())
     
     // Twitterウィジェットの再読み込み
     if (typeof window !== 'undefined') {
@@ -30,7 +57,7 @@ export function HTMLContent({ content }: HTMLContentProps) {
         windowWithTwitter.twttr.widgets.load()
       }
     }
-  }, [])
+  }, [content])
 
   if (!isClient) {
     // サーバーサイドでは基本的なHTMLのみ表示（スクリプトタグを除去）
@@ -41,6 +68,7 @@ export function HTMLContent({ content }: HTMLContentProps) {
     
     return (
       <div
+        className="prose prose-invert max-w-none"
         dangerouslySetInnerHTML={{ __html: serverContent }}
       />
     )
@@ -48,7 +76,8 @@ export function HTMLContent({ content }: HTMLContentProps) {
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: content }}
+      className="prose prose-invert max-w-none"
+      dangerouslySetInnerHTML={{ __html: processedContent }}
     />
   )
 }

@@ -6,6 +6,7 @@ import { Metadata } from 'next'
 import Script from 'next/script'
 import { HTMLContent } from '@/components/HTMLContent'
 import { ExpandableImage } from '@/components/ExpandableImage'
+import { lineSeedFont } from '../../layout'
 
 export const revalidate = 60
 
@@ -57,16 +58,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`
 
     return (
-      <div className="min-h-screen bg-[#EFEEDF] text-[#4C4948] font-sans">
-        <header className="sticky top-0 z-50 border-b border-[#4C4948] bg-[#EFEEDF]/90 backdrop-blur">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center">
-            <Link href="/blog" className="flex items-center space-x-2 text-[#4C4948]">
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to blog</span>
-            </Link>
-          </div>
-        </header>
-
+      <div className="min-h-screen bg-[#101114] text-white font-sans">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Sidebar */}
@@ -74,13 +66,13 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
             </aside>
 
             {/* Main Content */}
-            <div className="flex-1 lg:max-w-4xl">
+            <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
               <article className="prose mx-auto">
-                <div className="mb-4 text-sm text-[#4C4948] flex items-center gap-2">
+                <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <time dateTime={article.publishedAt}>{formattedDate}</time>
                 </div>
-                <h1 className="text-3xl font-bold mb-6 text-[#4C4948]">{article.title}</h1>
+                <h1 className={`text-3xl font-semibold mb-6 text-white ${lineSeedFont.className}`}>{article.title}</h1>
 
                 {article.eyecatch?.url && (
                   <div className="flex justify-center mb-6">
@@ -105,10 +97,10 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
           <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
         </main>
 
-        <footer className="py-8 border-t border-[#4C4948] text-center">
-          <p className="text-sm text-[#4C4948]">
-            &copy; 2024 Yasuhisa Honda. All rights reserved.{' '}
-            <Link href="/privacy" className="underline text-[#4C4948]">Privacy Policy</Link>
+        <footer className="py-8 border-t border-gray-600 text-center">
+          <p className="text-sm text-white">
+            &copy; 2024 hondaya.co. All rights reserved.{' '}
+            <Link href="/privacy" className="underline text-white">Privacy Policy</Link>
           </p>
         </footer>
       </div>

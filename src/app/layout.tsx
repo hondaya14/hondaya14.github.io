@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import localFont from "next/font/local";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
 import "./globals.css";
 
+const notoSansJP = Noto_Sans_JP({ subsets: ['latin'] });
 
-const lineSeedFont = localFont({
+export const lineSeedFont = localFont({
   src: './LINESeedSans_W_XBd.woff2',
 })
 
 export const metadata: Metadata = {
-  title: "Yasuhisa Honda",
-  description: "Personal website of Honda Yasuhisa",
+  title: "hondaya.co",
+  description: "Personal website of hondaya.co",
 };
 
 export default function RootLayout({
@@ -32,7 +34,7 @@ export default function RootLayout({
         <PWAHead/>
       </head>
       <body
-        className={`${lineSeedFont.className} antialiased`}
+        className={`${notoSansJP.className} antialiased`}
       >
         {children}
       </body>
