@@ -1,7 +1,7 @@
 import { getArticle, getArticles } from '@/lib/microcms'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Calendar, ArrowLeft } from 'lucide-react'
+import { Calendar } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
 import { HTMLContent } from '@/components/HTMLContent'

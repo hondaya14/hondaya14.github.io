@@ -7,7 +7,6 @@ import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
 import "./globals.css";
 
-const notoSansJP = Noto_Sans_JP({ subsets: ['latin'] });
 
 
 export const lineSeedFont = localFont({

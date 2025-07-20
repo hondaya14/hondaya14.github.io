@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, Rss } from "lucide-react"
+import { Rss } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import type { Article } from "@/lib/microcms"
