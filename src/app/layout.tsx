@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+
 import localFont from "next/font/local";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleAdSense from "@/components/GoogleAdSense";
@@ -8,8 +9,14 @@ import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ['latin'] });
 
+
 export const lineSeedFont = localFont({
   src: './LINESeedSans_W_XBd.woff2',
+})
+const notoSansJp = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-noto-sans-jp',
 })
 
 export const metadata: Metadata = {
@@ -33,9 +40,7 @@ export default function RootLayout({
         {/* PWA Manifest & Apple settings */}
         <PWAHead/>
       </head>
-      <body
-        className={`${notoSansJP.className} antialiased`}
-      >
+      <body className={`${notoSansJp.className} antialiased`}>
         {children}
       </body>
     </html>

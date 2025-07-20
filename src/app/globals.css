@@ -9,7 +9,7 @@
 :root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-noto-sans-jp);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -134,6 +134,7 @@ article a.no-underline p {
   text-decoration: none !important;
 }
 
+
 /* Code block styles */
 .code-block {
   position: relative;
@@ -198,3 +199,33 @@ article a.no-underline p {
   --tw-prose-th-borders: #374151;
   --tw-prose-td-borders: #4b5563;
 }
+
+/* Blockquote styling */
+
+blockquote {
+  border-left: 4px solid #4C4948;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #4C4948;
+}
+
+blockquote::before {
+  content: "\201C"; /* left double quotation mark */
+  font-size: 2rem;
+  line-height: 0;
+  margin-right: 0.25rem;
+  vertical-align: -0.4rem;
+  color: #4C4948;
+}
+
+@media (prefers-color-scheme: dark) {
+  blockquote {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  blockquote::before {
+    color: #ffffff;
+  }
+}
+
