@@ -32,19 +32,36 @@ export function HTMLContent({ content }: HTMLContentProps) {
     
     $('pre code').each((_, element) => {
       const codeText = $(element).text()
-      const result = hljs.highlightAuto(codeText)
+      const $element = $(element)
+      
+      // language-* クラスから言語を抽出
+      let language = null
+      const classList = $element.attr('class') || ''
+      const languageMatch = classList.match(/language-(\w+)/)
+      if (languageMatch) {
+        language = languageMatch[1]
+      }
+      
+      // 言語が指定されている場合は特定の言語でハイライト、そうでなければ自動判別
+      let result
+      if (language && hljs.getLanguage(language)) {
+        result = hljs.highlight(codeText, { language })
+      } else {
+        result = hljs.highlightAuto(codeText)
+        language = result.language
+      }
       
       // コードブロックにクラスと言語情報を追加
-      $(element).html(result.value)
-      $(element).addClass('hljs')
+      $element.html(result.value)
+      $element.addClass('hljs')
       
       // 親のpreタグにコードブロック用のクラスを追加
-      const preElement = $(element).parent('pre')
+      const preElement = $element.parent('pre')
       preElement.addClass('code-block')
       
       // 言語名の表示用
-      if (result.language) {
-        preElement.attr('data-language', result.language)
+      if (language) {
+        preElement.attr('data-language', language)
       }
     })
     

@@ -47,3 +47,25 @@ This is a **static export Next.js blog** for Yasuhisa Honda's personal website t
 - Image optimization for MicroCMS assets
 - Twitter widget support for embedded tweets
 - SEO optimization with metadata generation
+
+## Important Patterns
+
+### Image Handling
+- **Aspect Ratio**: All blog images (list and detail) use 16:9 aspect ratio containers with `object-contain` to preserve image content
+- **Background Colors**: Image padding uses `bg-[#15171a]` to match page theme
+- **OGP Images**: Dynamic OGP dimensions calculated based on original image aspect ratio for social sharing
+
+### Content Processing
+- **HTML Sanitization**: All MicroCMS content processed through HTMLContent component with DOMPurify
+- **Syntax Highlighting**: Code blocks automatically highlighted with highlight.js
+- **Table Handling**: Tables wrapped in scrollable containers for mobile responsiveness
+
+### API Integration
+- **Caching**: 60-second revalidation (`revalidate = 60`) for blog content
+- **Error Handling**: Proper fallbacks for missing images and content
+- **Static Generation**: Uses `generateStaticParams` for pre-rendering all blog posts
+
+### Dark Theme Architecture
+- **Primary Background**: `bg-[#101114]` for main page areas
+- **Content Background**: `bg-[#15171a]` for content containers
+- **Text Colors**: White primary text with `text-gray-300` for secondary content
