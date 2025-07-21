@@ -15,10 +15,30 @@ export async function generateStaticParams() {
   return data.contents.map((article) => ({ id: article.id }))
 }
 
+function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
+  const targetRatio = 16 / 9
+  const originalRatio = originalWidth / originalHeight
+  
+  if (originalRatio > targetRatio) {
+    // 横長画像：横幅基準で16:9枠を作成
+    const width = originalWidth
+    const height = Math.round(width / targetRatio)
+    return { width, height }
+  } else {
+    // 縦長画像：縦幅基準で16:9枠を作成
+    const height = originalHeight
+    const width = Math.round(height * targetRatio)
+    return { width, height }
+  }
+}
+
 export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
   try {
     const resolvedParams = await props.params;
     const article = await getArticle(resolvedParams.id)
+    const ogpDimensions = article.eyecatch?.width && article.eyecatch?.height 
+      ? calculateOGPDimensions(article.eyecatch.width, article.eyecatch.height)
+      : undefined
     
     return {
       title: article.title,
@@ -26,11 +46,11 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
       openGraph: {
         title: article.title,
         description: article.content ? article.content.slice(0, 20).replace(/<[^>]*>/g, '') : undefined,
-        images: article.eyecatch?.url ? [
+        images: article.eyecatch?.url && ogpDimensions ? [
           {
             url: article.eyecatch.url,
-            width: article.eyecatch.width,
-            height: article.eyecatch.height,
+            width: ogpDimensions.width,
+            height: ogpDimensions.height,
             alt: article.title,
           }
         ] : undefined,
