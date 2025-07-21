@@ -96,13 +96,15 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
 
                 {article.eyecatch?.url && (
                   <div className="flex justify-center mb-6">
-                    <ExpandableImage
-                      src={article.eyecatch.url}
-                      alt=""
-                      width={400}
-                      height={200}
-                      className="rounded"
-                    />
+                    <div className="w-full max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                      <ExpandableImage
+                        src={article.eyecatch.url}
+                        alt=""
+                        width={article.eyecatch.width || 800}
+                        height={article.eyecatch.height || 450}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
                   </div>
                 )}
 

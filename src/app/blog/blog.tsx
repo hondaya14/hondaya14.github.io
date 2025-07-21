@@ -47,17 +47,18 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                 <article key={article.id} className="border-b border-gray-600 pb-8 last:border-b-0">
                   <div className="flex flex-col sm:flex-row gap-6">
                     <div className="sm:w-1/3">
-                      <Link href={`/blog/${article.id}`} className="block relative h-40 rounded overflow-hidden">
+                      <Link href={`/blog/${article.id}`} className="block aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
                         {article.eyecatch?.url ? (
                           <Image
                             src={article.eyecatch.url}
                             alt=""
-                            fill
-                            className="object-cover"
+                            width={article.eyecatch.width || 400}
+                            height={article.eyecatch.height || 225}
+                            className="max-w-full max-h-full object-contain"
                             unoptimized={true}
                           />
                         ) : (
-                          <div className="w-full h-full bg-[#15171a] border border-gray-600 flex items-center justify-center">
+                          <div className="flex items-center justify-center">
                             <span className="text-4xl">🫠</span>
                           </div>
                         )}
