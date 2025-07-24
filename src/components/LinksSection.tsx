@@ -49,7 +49,7 @@ export default async function LinksSection({ title, links }: LinksSectionProps) 
       <h2 className="text-2xl font-semibold">{title}</h2>
       <div className="space-y-4">
         {linksWithOGP.map((link) => (
-          <LinkCard key={link.url} url={link.url} ogpData={link.ogpData}>
+          <LinkCard key={link.url} url={link.url} ogpData={link.ogpData} size="large">
             {link.label}
           </LinkCard>
         ))}

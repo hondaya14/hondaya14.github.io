@@ -66,13 +66,20 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
                     </div>
                     <div className="sm:w-2/3 space-y-2">
                       <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <time dateTime={article.publishedAt}>
+                        <time dateTime={article.publishedAt} className="font-bold">
                           {(() => {
                             const date = new Date(article.publishedAt);
                             return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
                           })()}
                         </time>
-                        <span>{readTime(article.content)}</span>
+                        {article.category && (
+                          <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
+                            {article.category.name}
+                          </span>
+                        )}
+                        <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
+                          {readTime(article.content)}
+                        </span>
                       </div>
                       <Link href={`/blog/${article.id}`} className="no-underline space-y-1 block">
                         <h3 className="text-xl font-semibold text-white">{article.title}</h3>

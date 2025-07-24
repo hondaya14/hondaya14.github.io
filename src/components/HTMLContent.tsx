@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import hljs from 'highlight.js'
 import * as cheerio from 'cheerio'
 import 'highlight.js/styles/github-dark.css'
+import { LinkCard } from './LinkCard'
+import { fetchAmazonProductInfo, isAmazonUrl, type AmazonProductInfo } from '@/lib/amazon'
 
 interface HTMLContentProps {
   content: string
@@ -22,6 +24,7 @@ interface WindowWithTwitter extends Window {
 
 export function HTMLContent({ content }: HTMLContentProps) {
   const [processedContent, setProcessedContent] = useState(content)
+  const [amazonLinks, setAmazonLinks] = useState<Array<{ url: string; text: string; id: string; productInfo?: AmazonProductInfo }>>([])
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
@@ -29,6 +32,40 @@ export function HTMLContent({ content }: HTMLContentProps) {
     
     // シンタックスハイライトの処理
     const $ = cheerio.load(content)
+    
+    // Amazonリンクの検出と処理
+    const foundAmazonLinks: Array<{ url: string; text: string; id: string; productInfo?: AmazonProductInfo }> = []
+    $('a').each((index, element) => {
+      const href = $(element).attr('href')
+      
+      if (href && isAmazonUrl(href)) {
+        const linkId = `amazon-link-${index}`
+        const linkText = $(element).text()
+        foundAmazonLinks.push({ url: href, text: linkText, id: linkId })
+        
+        // Amazonリンクをプレースホルダーに置換
+        $(element).replaceWith(`<div data-amazon-link="${linkId}" class="my-4"></div>`)
+      }
+    })
+    setAmazonLinks(foundAmazonLinks)
+    
+    // Amazon商品情報を非同期で取得
+    foundAmazonLinks.forEach(async (link) => {
+      try {
+        const productInfo = await fetchAmazonProductInfo(link.url)
+        if (productInfo) {
+          setAmazonLinks(prevLinks => 
+            prevLinks.map(prevLink => 
+              prevLink.id === link.id 
+                ? { ...prevLink, productInfo }
+                : prevLink
+            )
+          )
+        }
+      } catch (error) {
+        console.error('Failed to fetch Amazon product info:', error)
+      }
+    })
     
     $('pre code').each((_, element) => {
       const codeText = $(element).text()
@@ -96,10 +133,40 @@ export function HTMLContent({ content }: HTMLContentProps) {
     )
   }
 
+  const renderContent = () => {
+    const parts = processedContent.split(/(<div data-amazon-link="[^"]*" class="my-4"><\/div>)/)
+    const result: React.ReactNode[] = []
+    
+    parts.forEach((part, index) => {
+      const amazonLinkMatch = part.match(/data-amazon-link="([^"]*)"/)
+      if (amazonLinkMatch) {
+        const linkId = amazonLinkMatch[1]
+        const link = amazonLinks.find(l => l.id === linkId)
+        if (link) {
+          result.push(
+            <div key={`amazon-${index}`} className="my-4">
+              <LinkCard url={link.url} ogpData={link.productInfo}>
+                {link.text}
+              </LinkCard>
+            </div>
+          )
+        }
+      } else if (part.trim()) {
+        result.push(
+          <div
+            key={`content-${index}`}
+            dangerouslySetInnerHTML={{ __html: part }}
+          />
+        )
+      }
+    })
+    
+    return result
+  }
+
   return (
-    <div
-      className="prose prose-invert max-w-none"
-      dangerouslySetInnerHTML={{ __html: processedContent }}
-    />
+    <div className="prose prose-invert max-w-none">
+      {renderContent()}
+    </div>
   )
 }
