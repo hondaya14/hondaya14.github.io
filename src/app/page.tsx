@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import { faRss } from "@fortawesome/free-solid-svg-icons";
+import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
 
 // const ZennIcon = () => {
@@ -31,13 +31,16 @@ export default function Home() {
         </h3>
         <div className="flex justify-center gap-4 relative mt-4 text-xl text-center z-10">
           <Link title="Blog" href="./blog">
-            <FontAwesomeIcon icon={faRss} className="w-10 "/>
+            <FontAwesomeIcon icon={faRss} className="w-9"/>
+          </Link>
+          <Link title="Links" href="./links">
+            <FontAwesomeIcon icon={faLink} className="w-12"/>
           </Link>
           <Link title="GitHub" href="https://github.com/hondaya14" target="_blank">
             <FontAwesomeIcon icon={faGithub} className="w-10 "/>
           </Link>
           <Link title="X" href="https://x.com/hondaya14" target="_blank">
-            <FontAwesomeIcon icon={faXTwitter} className="w-10 "/>
+            <FontAwesomeIcon icon={faXTwitter} className="w-11 "/>
           </Link>
           <Link title="LinkedIn" href="https://www.linkedin.com/in/yasuhisa-honda-5a5470274/" target="_blank">
             <FontAwesomeIcon icon={faLinkedin} className="w-10 "/>

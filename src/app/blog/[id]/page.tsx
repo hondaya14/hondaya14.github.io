@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { Calendar } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
-import { HTMLContent } from '@/components/HTMLContent'
+import { ServerHTMLContent } from '@/components/ServerHTMLContent'
 import { ExpandableImage } from '@/components/ExpandableImage'
 import { lineSeedFont } from '@/lib/fonts'
 
@@ -108,7 +108,7 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                   </div>
                 )}
 
-                <HTMLContent content={article.content || ''} />
+                <ServerHTMLContent content={article.content || ''} />
               </article>
             </div>
 
