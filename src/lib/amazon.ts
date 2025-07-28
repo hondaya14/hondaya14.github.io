@@ -10,7 +10,6 @@ export interface AmazonProductInfo {
 
 export async function fetchAmazonProductInfo(url: string): Promise<AmazonProductInfo | null> {
   try {
-    console.log(url)
     // Amazon側でbotブロックが原因でOGP取得が不安定になる問題を修正
     // User-Agentヘッダーを追加してブラウザからのリクエストとして認識させる
     const response = await fetch(url, {
@@ -27,6 +26,8 @@ export async function fetchAmazonProductInfo(url: string): Promise<AmazonProduct
     if (!response.ok) {
       throw new Error('Failed to fetch Amazon page')
     }
+
+    console.log('Success for fetching Amazon product info: ', url)
 
     const html = await response.text()
     const $ = cheerio.load(html)
@@ -46,8 +47,8 @@ export async function fetchAmazonProductInfo(url: string): Promise<AmazonProduct
                         $('.a-unordered-list.a-nostyle.a-vertical').first().text().trim().slice(0, 200)
 
     return {
-      title: title || 'Amazon商品',
-      description: description || '商品詳細を確認してください',
+      title: title || 'Amazon',
+      description: description || 'Please check the product page for more details.',
       image: image || undefined,
       siteName: 'Amazon',
       url: url

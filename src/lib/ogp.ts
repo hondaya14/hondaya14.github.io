@@ -21,6 +21,7 @@ export async function fetchOGPData(url: string): Promise<OGPData | null> {
       url,
       timeout: 10000
     })
+    console.log('Success for fetching OGP data: ', url)
 
     return {
       title: result.ogTitle,
@@ -29,8 +30,8 @@ export async function fetchOGPData(url: string): Promise<OGPData | null> {
       siteName: result.ogSiteName,
       url: result.ogUrl || url
     }
-  } catch (error) {
-    console.error('Error fetching OGP data:', error)
+  } catch {
+    console.error('Error fetching OGP data:', url)
     return null
   }
 }
