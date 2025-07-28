@@ -11,7 +11,18 @@ export interface AmazonProductInfo {
 export async function fetchAmazonProductInfo(url: string): Promise<AmazonProductInfo | null> {
   try {
     console.log(url)
-    const response = await fetch(url)
+    // Amazon側でbotブロックが原因でOGP取得が不安定になる問題を修正
+    // User-Agentヘッダーを追加してブラウザからのリクエストとして認識させる
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
 
     if (!response.ok) {
       throw new Error('Failed to fetch Amazon page')
