@@ -266,6 +266,34 @@ blockquote::before {
   color: #4C4948;
 }
 
+/* Prose blockquote styling for blog content */
+.prose blockquote {
+  border-left: 4px solid #60a5fa;
+  background-color: rgba(96, 165, 250, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #d1d5db;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.prose blockquote p {
+  margin: 0;
+  color: #d1d5db !important;
+}
+
+.prose blockquote::before {
+  content: "\201C";
+  font-size: 3rem;
+  line-height: 0;
+  position: absolute;
+  left: 0.5rem;
+  top: 1rem;
+  color: #60a5fa;
+  opacity: 0.3;
+}
+
 @media (prefers-color-scheme: dark) {
   blockquote {
     border-color: #ffffff;
