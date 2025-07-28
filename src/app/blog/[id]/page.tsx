@@ -41,7 +41,7 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
       : undefined
     
     return {
-      title: article.title,
+      title: `${article.title} | hondaya.blog`,
       description: article.content ? article.content.slice(0, 20).replace(/<[^>]*>/g, '') : undefined,
       openGraph: {
         title: article.title,
