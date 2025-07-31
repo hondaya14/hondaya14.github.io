@@ -41,6 +41,10 @@ export default function PrivacyPage() {
           Cookie を使用しております。Cookie を無効にする設定およびGoogle AdSenseに関する詳細は
           「Google の広告およびプライバシーに関するポリシー」をご確認ください。
         </p>
+        <h2 className="text-2xl font-semibold mb-3">Amazonアソシエイトについて</h2>
+        <p>
+          当サイトは、Amazonのアソシエイトとして、適格販売により収入を得ています。
+        </p>
         <h2 className="text-2xl font-semibold mb-3">関連リンク</h2>
         <ul className="list-disc list-inside space-y-2">
           <li>
