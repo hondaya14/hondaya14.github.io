@@ -7,6 +7,8 @@ interface OGPData {
   image?: string
   url?: string
   siteName?: string
+  price?: string
+  availability?: string
 }
 
 interface LinkCardProps {
@@ -60,6 +62,12 @@ export function LinkCard({ url, children, ogpData, size = 'small' }: LinkCardPro
           {ogpData.description && (
             <p className={`${isLarge ? 'text-sm' : 'text-xs'} text-gray-300 line-clamp-2 ${isLarge ? '' : 'mb-2'}`}>
               {ogpData.description}
+            </p>
+          )}
+          {(ogpData.price || ogpData.availability) && (
+            <p className={`${isLarge ? 'text-sm' : 'text-xs'} text-gray-300 ${isLarge ? '' : 'mb-2'}`}>
+              {ogpData.price}
+              {ogpData.availability ? ` (${ogpData.availability})` : ''}
             </p>
           )}
           <div className={`flex items-center ${isLarge ? 'gap-2' : 'gap-1'} text-xs text-gray-400`}>
