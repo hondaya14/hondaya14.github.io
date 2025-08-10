@@ -16,6 +16,10 @@ export default function LinksPage() {
     { url: 'https://engineering.linecorp.com/ja/blog/internship2021-hackathon' },
   ]
 
+  const talkLinks: LinkItem[] = [
+    { url: 'https://freee.connpass.com/event/304573/' },
+  ]
+
 
   return (
     <div className="min-h-screen bg-[#101114] text-white p-8">
@@ -23,6 +27,7 @@ export default function LinksPage() {
         <h1 className="text-3xl font-semibold">Links</h1>
         <LinksSection title="Tech Blog" links={techBlogLinks} />
         <LinksSection title="Events" links={eventLinks} />
+        <LinksSection title="Talks" links={talkLinks} />
       </div>
     </div>
   )
