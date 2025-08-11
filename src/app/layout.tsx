@@ -6,8 +6,8 @@ import { notoSansJp } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "hondaya.co",
-  description: "Personal website of hondaya.co",
+  title: "Yasuhisa Honda",
+  description: "Personal website of Yasuhisa Honda",
 };
 
 export default function RootLayout({
