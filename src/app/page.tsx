@@ -20,16 +20,16 @@ import { lineSeedFont } from "@/lib/fonts";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#101114] text-foreground">
-      <div className="relative p-8 sm:p-12 rounded-lg">
-        <div className="absolute inset-0 rounded-md backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100"></div>
-        <h1 className={`relative text-4xl sm:text-6xl font-semibold text-center z-10 ${lineSeedFont.className}`}>
-          hondaya.co
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
+      <div className="relative p-12 sm:p-20 rounded-2xl shadow-lg">
+        <div className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md"></div>
+        <h1 className={`relative text-5xl sm:text-7xl font-semibold text-center z-10 ${lineSeedFont.className}`}>
+          Yasuhisa Honda
         </h1>
-        <h3 className="relative mt-4 text-xl text-center z-10">
+        <h3 className="relative mt-6 text-2xl text-center z-10">
           Software Engineer
         </h3>
-        <div className="flex justify-center gap-4 relative mt-4 text-xl text-center z-10">
+        <div className="flex justify-center gap-6 relative mt-6 text-2xl text-center z-10">
           <Link title="Blog" href="./blog">
             <FontAwesomeIcon icon={faRss} className="w-9"/>
           </Link>
