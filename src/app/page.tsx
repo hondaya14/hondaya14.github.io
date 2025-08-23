@@ -4,19 +4,20 @@ import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-i
 import Link from "next/link";
 import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
+import Image from "next/image";
 
-// const ZennIcon = () => {
-//   return (
-//     <Image 
-//       src="/zenn-logo-only.svg"
-//       alt="Zenn Icon"
-//       width={40}
-//       height={40}
-//       className="w-10 h-10"
-//       title="Zenn"
-//     />
-//   );
-// };
+const ZennIcon = () => {
+  return (
+    <Image
+      src="/zenn-logo-only.svg"
+      alt="Zenn Icon"
+      width={40}
+      height={40}
+      className="w-10 h-10"
+      title="Zenn"
+    />
+  );
+};
 
 export default function Home() {
   return (
@@ -48,9 +49,9 @@ export default function Home() {
           {/* <Link title="Instagram" href="https://www.instagram.com/nqv_no" target="_blank">
             <FontAwesomeIcon icon={faInstagram} className="w-10 "/>
           </Link> */}
-          {/* <Link title="Zenn" href="https://zenn.dev/hondaya14" target="_blank">
+          <Link title="Zenn" href="https://zenn.dev/hondaya" target="_blank">
             <ZennIcon/>
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>
