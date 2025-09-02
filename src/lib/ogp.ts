@@ -7,6 +7,8 @@ export interface OGPData {
   image?: string
   url?: string
   siteName?: string
+  price?: string
+  availability?: string
 }
 
 export async function fetchOGPData(url: string): Promise<OGPData | null> {
@@ -17,7 +19,7 @@ export async function fetchOGPData(url: string): Promise<OGPData | null> {
     }
 
     // 通常のOGP取得
-    const { result } = await ogs({ 
+    const { result } = await ogs({
       url,
       timeout: 10000
     })
@@ -28,7 +30,9 @@ export async function fetchOGPData(url: string): Promise<OGPData | null> {
       description: result.ogDescription,
       image: result.ogImage?.[0]?.url,
       siteName: result.ogSiteName,
-      url: result.ogUrl || url
+      url: result.ogUrl || url,
+      price: undefined,
+      availability: undefined
     }
   } catch {
     console.error('Error fetching OGP data:', url)

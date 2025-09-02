@@ -24,7 +24,10 @@ bun run build
 
 ## Environment Variables
 
-Access to microCMS requires the `MICROCMS_API_KEY` environment variable. See `.env.example` for the required key name.
+Access to microCMS requires the `MICROCMS_API_KEY` environment variable.
+Fetching Amazon product data uses the Product Advertising API and requires the
+`AMAZON_ACCESS_KEY`, `AMAZON_SECRET_KEY` and `AMAZON_PARTNER_TAG` variables.
+See `.env.example` for all required keys.
 
 ## Scripts
 
