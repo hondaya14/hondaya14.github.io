@@ -12,10 +12,13 @@ export default function Home() {
       <div className="relative p-8 sm:p-12 rounded-lg">
         <div className="absolute inset-0 rounded-md backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100"></div>
         <h1 className={`relative text-4xl sm:text-6xl font-semibold text-center z-10 ${lineSeedFont.className}`}>
-          hondaya
+          <span className="inline-block overflow-hidden whitespace-nowrap [font-family:Menlo,Monaco,Consolas,monospace] border-r border-current [--n:14] w-[14ch] transition-[width] duration-[2000ms] [transition-timing-function:steps(var(--n),_end)] [@starting-style]:w-0 after:w-0 after:ml-[2px] after:border-r after:border-current after:h-[1em] after:animate-pulse">
+          Yasuhisa Honda</span>
         </h1>
-        <h3 className="relative mt-4 text-xl text-center z-10">
-          Software Engineer
+        <h3 className="relative mt-4 text-xl text-center z-10 ">
+          <span className="inline-block overflow-hidden whitespace-nowrap [font-family:Menlo,Monaco,Consolas,monospace] border-r border-current [--n:17] w-[17ch] transition-[width] duration-[2000ms] [transition-timing-function:steps(var(--n),_end)] [@starting-style]:w-0">
+            Software Engineer
+          </span>
         </h3>
         <div className="flex justify-center gap-4 relative mt-4 text-xl text-center z-10">
           <Link title="Blog" href="./blog">
