@@ -27,10 +27,15 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           <Link href="/" className="text-white font-bold no-underline">
             <span>hondaya.co</span>
           </Link>
-          <Link href="/blog/feed.xml" className="flex items-center space-x-2 text-white font-bold no-underline">
-            <Rss className="h-4 w-4" />
-            <span>Subscribe</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link
+              href="/blog/feed.xml"
+              className="flex items-center space-x-2 text-white font-bold no-underline"
+            >
+              <Rss className="h-4 w-4" />
+              <span>Subscribe</span>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -41,54 +46,60 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           </aside>
 
           {/* Main Content */}
-          <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
-            <div className="space-y-12">
-              {articles.map((article) => (
-                <article key={article.id} className="border-b border-gray-600 pb-8 last:border-b-0">
-                  <div className="flex flex-col sm:flex-row gap-6">
-                    <div className="sm:w-1/3">
-                      <Link href={`/blog/${article.id}`} className="block aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
-                        {article.eyecatch?.url ? (
-                          <Image
-                            src={article.eyecatch.url}
-                            alt=""
-                            width={article.eyecatch.width || 400}
-                            height={article.eyecatch.height || 225}
-                            className="max-w-full max-h-full object-contain"
-                            unoptimized={true}
-                          />
-                        ) : (
-                          <div className="flex items-center justify-center">
-                            <span className="text-4xl">🫠</span>
-                          </div>
-                        )}
-                      </Link>
-                    </div>
-                    <div className="sm:w-2/3 space-y-2">
-                      <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <time dateTime={article.publishedAt} className="font-bold">
-                          {(() => {
-                            const date = new Date(article.publishedAt);
-                            return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
-                          })()}
-                        </time>
-                        {article.category && (
-                          <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
-                            {article.category.name}
-                          </span>
-                        )}
-                        <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
-                          {readTime(article.content)}
-                        </span>
+          {/* したの要素を縦関係で配置 */}
+          <div className="flex-1 flex flex-col lg:max-w-4xl">
+            <p className="m-5 text-white-400">External Services</p>
+            <ZennExternalLinkBar></ZennExternalLinkBar>
+            <p className="m-5 text-white-400">Self hosting</p>
+            <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
+              <div className="space-y-12">
+                {articles.map((article) => (
+                  <article key={article.id} className="border-b border-gray-600 pb-8 last:border-b-0">
+                    <div className="flex flex-col sm:flex-row gap-6">
+                      <div className="sm:w-1/3">
+                        <Link href={`/blog/${article.id}`} className="block aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                          {article.eyecatch?.url ? (
+                            <Image
+                              src={article.eyecatch.url}
+                              alt=""
+                              width={article.eyecatch.width || 400}
+                              height={article.eyecatch.height || 225}
+                              className="max-w-full max-h-full object-contain"
+                              unoptimized={true}
+                            />
+                          ) : (
+                            <div className="flex items-center justify-center">
+                              <span className="text-4xl">🫠</span>
+                            </div>
+                          )}
+                        </Link>
                       </div>
-                      <Link href={`/blog/${article.id}`} className="no-underline space-y-1 block">
-                        <h3 className="text-xl font-semibold text-white">{article.title}</h3>
-                        <p className="text-sm text-gray-300">{excerpt(article.content)}</p>
-                      </Link>
+                      <div className="sm:w-2/3 space-y-2">
+                        <div className="flex items-center gap-4 text-sm text-gray-300">
+                          <time dateTime={article.publishedAt} className="font-bold">
+                            {(() => {
+                              const date = new Date(article.publishedAt);
+                              return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+                            })()}
+                          </time>
+                          {article.category && (
+                            <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
+                              {article.category.name}
+                            </span>
+                          )}
+                          <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
+                            {readTime(article.content)}
+                          </span>
+                        </div>
+                        <Link href={`/blog/${article.id}`} className="no-underline space-y-1 block">
+                          <h3 className="text-xl font-semibold text-white">{article.title}</h3>
+                          <p className="text-sm text-gray-300">{excerpt(article.content)}</p>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -106,4 +117,28 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
       </footer>
     </div>
   )
+}
+
+export function ZennExternalLinkBar() {
+  return (
+    // full witdh animation bar, hover to highlight blue
+    <Link
+      href="https://zenn.dev/hondaya14"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center"
+    >
+      <div className=" w-full p-4 mb-8 bg-gradient-to-r from-white-400 via-black-500 to-white-600 rounded-lg flex animate-gradient-x underline hover:from-blue-400 hover:via-black-500 hover:to-blue-600">
+        <Image
+          src="/zenn-logo-only.svg"
+          alt="Zenn"
+          width={24}
+          height={24}
+          className="h-6 w-6"
+        />
+        <span className="mx-2"> | </span>
+        zenn.dev/hondaya14
+      </div>
+    </Link>
+  );
 }

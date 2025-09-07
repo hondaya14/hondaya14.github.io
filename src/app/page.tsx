@@ -4,6 +4,7 @@ import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-i
 import Link from "next/link";
 import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 // const ZennIcon = () => {
 //   return (
@@ -37,13 +38,13 @@ export default function Home() {
             <FontAwesomeIcon icon={faLink} className="w-12"/>
           </Link>
           <Link title="GitHub" href="https://github.com/hondaya14" target="_blank">
-            <FontAwesomeIcon icon={faGithub} className="w-10 "/>
+            <FontAwesomeIcon icon={faGithub as IconProp} className="w-10 "/>
           </Link>
           <Link title="X" href="https://x.com/hondaya14" target="_blank">
-            <FontAwesomeIcon icon={faXTwitter} className="w-11 "/>
+            <FontAwesomeIcon icon={faXTwitter as IconProp} className="w-11 "/>
           </Link>
           <Link title="LinkedIn" href="https://www.linkedin.com/in/yasuhisa-honda-5a5470274/" target="_blank">
-            <FontAwesomeIcon icon={faLinkedin} className="w-10 "/>
+            <FontAwesomeIcon icon={faLinkedin as IconProp} className="w-10 "/>
           </Link>
           {/* <Link title="Instagram" href="https://www.instagram.com/nqv_no" target="_blank">
             <FontAwesomeIcon icon={faInstagram} className="w-10 "/>
