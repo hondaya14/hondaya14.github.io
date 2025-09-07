@@ -27,10 +27,29 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
           <Link href="/" className="text-white font-bold no-underline">
             <span>hondaya.co</span>
           </Link>
-          <Link href="/blog/feed.xml" className="flex items-center space-x-2 text-white font-bold no-underline">
-            <Rss className="h-4 w-4" />
-            <span>Subscribe</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link
+              href="https://zenn.dev/hondaya14"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
+            >
+              <Image
+                src="/zenn-logo-only.svg"
+                alt="Zenn"
+                width={24}
+                height={24}
+                className="h-6 w-6"
+              />
+            </Link>
+            <Link
+              href="/blog/feed.xml"
+              className="flex items-center space-x-2 text-white font-bold no-underline"
+            >
+              <Rss className="h-4 w-4" />
+              <span>Subscribe</span>
+            </Link>
+          </div>
         </div>
       </header>
 
