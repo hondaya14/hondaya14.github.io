@@ -6,26 +6,13 @@ import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-// const ZennIcon = () => {
-//   return (
-//     <Image 
-//       src="/zenn-logo-only.svg"
-//       alt="Zenn Icon"
-//       width={40}
-//       height={40}
-//       className="w-10 h-10"
-//       title="Zenn"
-//     />
-//   );
-// };
-
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#101114] text-foreground">
       <div className="relative p-8 sm:p-12 rounded-lg">
         <div className="absolute inset-0 rounded-md backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100"></div>
         <h1 className={`relative text-4xl sm:text-6xl font-semibold text-center z-10 ${lineSeedFont.className}`}>
-          hondaya.co
+          hondaya
         </h1>
         <h3 className="relative mt-4 text-xl text-center z-10">
           Software Engineer
@@ -41,17 +28,11 @@ export default function Home() {
             <FontAwesomeIcon icon={faGithub as IconProp} className="w-10 "/>
           </Link>
           <Link title="X" href="https://x.com/hondaya14" target="_blank">
-            <FontAwesomeIcon icon={faXTwitter as IconProp} className="w-11 "/>
+            <FontAwesomeIcon icon={faXTwitter as IconProp} className="w-10 "/>
           </Link>
           <Link title="LinkedIn" href="https://www.linkedin.com/in/yasuhisa-honda-5a5470274/" target="_blank">
             <FontAwesomeIcon icon={faLinkedin as IconProp} className="w-10 "/>
           </Link>
-          {/* <Link title="Instagram" href="https://www.instagram.com/nqv_no" target="_blank">
-            <FontAwesomeIcon icon={faInstagram} className="w-10 "/>
-          </Link> */}
-          {/* <Link title="Zenn" href="https://zenn.dev/hondaya14" target="_blank">
-            <ZennIcon/>
-          </Link> */}
         </div>
       </div>
     </div>
