@@ -19,7 +19,7 @@
     "cheerio": "^1.1.2",
     "claude": "^0.1.2",
     "claude-code": "^0.0.2",
-    "clsx": "^1.2.1",
+    "clsx": "^2.1.1",
     "dompurify": "^3.2.6",
     "feed": "^5.1.0",
     "ghost-cli": "^1.28.3",
