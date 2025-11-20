@@ -1,5 +1,7 @@
-import type { MDXComponents } from 'mdx/types'
+"use client"
+
 import React from 'react'
+import type { MDXComponents } from 'mdx/types'
 import { CodeBlock } from '@/components/CodeBlock'
 
 function extractCodeChild(node: React.ReactNode) {
@@ -15,7 +17,7 @@ function extractCodeChild(node: React.ReactNode) {
   return { language, code }
 }
 
-function PreWithSyntax(props: React.HTMLAttributes<HTMLPreElement>) {
+export function PreWithSyntax(props: React.HTMLAttributes<HTMLPreElement>) {
   const extracted = extractCodeChild(props.children)
   if (!extracted) return <pre {...props} />
   return (
@@ -25,19 +27,16 @@ function PreWithSyntax(props: React.HTMLAttributes<HTMLPreElement>) {
   )
 }
 
-function InlineCode(props: React.HTMLAttributes<HTMLElement>) {
+export function InlineCode(props: React.HTMLAttributes<HTMLElement>) {
   const className = (props.className || '') as string
   const language = /language-([^\s]+)/.exec(className)?.[1] ?? null
   const content = String(props.children || '')
-  // If MDX emitted a language on inline <code>, treat as block for clarity
   if (language) return <CodeBlock language={language}>{content}</CodeBlock>
   return <CodeBlock inline>{content}</CodeBlock>
 }
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return {
-    pre: PreWithSyntax as any,
-    code: InlineCode as any,
-    ...components,
-  }
+export const mdxCodeComponents: MDXComponents = {
+  pre: PreWithSyntax as any,
+  code: InlineCode as any,
 }
+
