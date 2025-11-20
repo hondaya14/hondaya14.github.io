@@ -21,7 +21,7 @@ export default function Home() {
           </span>
         </h3>
         <div className="flex justify-center gap-4 relative mt-4 text-xl text-center z-10">
-          <Link title="Blog" href="./blog">
+          <Link title="Blog" href="blog">
             <FontAwesomeIcon icon={faRss} className="w-9"/>
           </Link>
           <Link title="Links" href="./links">

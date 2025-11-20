@@ -1,0 +1,182 @@
+---
+title: "Markdown + GFM + MDX Sample"
+description: "A comprehensive sample showcasing common Markdown, GFM features, and safe HTML in MDX."
+date: "2025-01-01"
+tags: ["markdown", "gfm", "mdx", "sample"]
+---
+
+# H1 Heading
+
+Intro paragraph with inline elements: 
+italic with *asterisks*, italic with _underscores_, bold with **double asterisks**, bold with __double underscores__, bold-italic with ***triple***, and strikethrough with ~~tildes~~.
+
+Inline `code()` and escaped characters: \* \_ \` \[ \] \( \) \#.
+
+Autolink (GFM): https://example.com
+
+Named link: [OpenAI](https://openai.com "OpenAI Website"). Internal link: [/blog](/blog).
+
+Reference link: [MDN Docs][mdn]. Another one to [Next.js][next].
+
+> Blockquote
+> 
+> - Supports multiple lines
+> - And nested content
+>   > Nested quote with `inline code`
+
+---
+
+## H2 Heading
+
+### H3 Heading
+
+#### H4 Heading
+
+##### H5 Heading
+
+###### H6 Heading
+
+### Lists
+
+- Unordered list item A
+  - Nested item A.1
+    - Nested item A.1.a
+- Unordered list item B
+
+1. Ordered list item 1
+2. Ordered list item 2
+   1. Nested ordered 2.1
+   2. Nested ordered 2.2
+
+### Task Lists (GFM)
+
+- [x] Done item
+- [ ] Pending item
+  - [ ] Subtask pending
+
+### Tables (GFM)
+
+| Column A | Column B | Column C |
+|:--------:|---------:|:---------|
+| centered |   right  | left     |
+|   123    |     456  | text     |
+
+### Images
+
+Inline image with alt and title:
+
+![Framework image](/fw.webp "Local public image")
+
+Remote image:
+
+![Next.js Logo](https://nextjs.org/static/images/nextjs-logo.png "Remote image")
+
+HTML image (safe):
+
+<img src="/next.svg" alt="Next SVG" width="120" height="70" />
+
+### Details/Summary (HTML)
+
+<details>
+  <summary>Click to expand details</summary>
+  <p>This block uses HTML supported by most Markdown renderers.</p>
+  <ul>
+    <li>It can contain lists</li>
+    <li>Links like <a href="https://example.com" target="_blank" rel="noopener noreferrer">Example</a></li>
+    <li>And inline <code>code</code></li>
+  </ul>
+  </details>
+
+### Code Blocks
+
+Fenced JavaScript:
+
+```js
+// Example function
+export function greet(name) {
+  return `Hello, ${name}!`
+}
+
+console.log(greet('world'))
+```
+
+TypeScript:
+
+```ts
+type User = { id: string; name: string }
+
+const getDisplayName = (u: User) => `${u.id}:${u.name}`
+```
+
+Bash:
+
+```bash
+echo "Hello from bash" && ls -la
+```
+
+Diff:
+
+```diff
+diff --git a/app.ts b/app.ts
+--- a/app.ts
++++ b/app.ts
+@@
+-const port = 3000
++const port = process.env.PORT ?? 3000
+```
+
+JSON:
+
+```json
+{
+  "name": "sample",
+  "private": true,
+  "scripts": { "dev": "next dev" }
+}
+```
+
+Indented code block (use fenced in MDX):
+
+```js
+function add(a, b) {
+  return a + b
+}
+```
+
+### Horizontal Rules
+
+---
+
+***
+
+___
+
+### Footnotes (GFM)
+
+Footnote reference example.[^1] Another one with inline definition.[^inline]
+
+[^1]: This is a footnote providing extra context.
+[^inline]: Inline-defined footnote placed right after its reference.
+
+### HTML Blocks
+
+<blockquote>
+  <p>Raw HTML blockquote with <strong>bold</strong> and <em>italic</em>.</p>
+</blockquote>
+
+<hr />
+
+### Escapes and Entities
+
+Reserved HTML entities: &amp; &lt; &gt; &copy; &rarr;.
+
+### Mixed Content Example
+
+Here is a paragraph followed by a list and a code span `let x = 1`.
+
+1. Step one — see [link][next]
+2. Step two — check the table above
+3. Step three — finish up 🎉
+
+[mdn]: https://developer.mozilla.org/ "MDN Web Docs"
+[next]: https://nextjs.org/ "Next.js"

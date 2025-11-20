@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Article, getArticles } from '../src/lib/microcms';
+import { Article } from '@/lib/type/article';
+import { getArticles } from '@/lib/article';
 import { Feed } from 'feed';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

@@ -23,7 +23,7 @@ This is a **static export Next.js blog** for Yasuhisa Honda's personal website t
 
 ### Content Management
 - **MicroCMS**: Headless CMS for blog content
-- **API Integration**: `src/lib/microcms.ts` handles all MicroCMS API calls
+- **API Integration**: `src/lib/article.ts` handles all MicroCMS API calls
 - **Environment**: Requires `MICROCMS_API_KEY` environment variable
 
 ### Key Components

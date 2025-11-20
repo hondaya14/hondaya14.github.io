@@ -17,7 +17,7 @@ interface TwitterWidgets {
 }
 
 interface WindowWithTwitter extends Window {
-  twttr?: {
+  twitter?: {
     widgets: TwitterWidgets
   }
 }
@@ -112,8 +112,8 @@ export function HTMLContent({ content }: HTMLContentProps) {
     // Twitterウィジェットの再読み込み
     if (typeof window !== 'undefined') {
       const windowWithTwitter = window as WindowWithTwitter
-      if (windowWithTwitter.twttr?.widgets) {
-        windowWithTwitter.twttr.widgets.load()
+      if (windowWithTwitter.twitter?.widgets) {
+        windowWithTwitter.twitter.widgets.load()
       }
     }
   }, [content])

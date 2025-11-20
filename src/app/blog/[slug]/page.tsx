@@ -1,18 +1,15 @@
-import { getArticle, getArticles } from '@/lib/microcms'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Calendar } from 'lucide-react'
 import { Metadata } from 'next'
 import Script from 'next/script'
-import { ServerHTMLContent } from '@/components/ServerHTMLContent'
 import { ExpandableImage } from '@/components/ExpandableImage'
 import { lineSeedFont } from '@/lib/fonts'
+import {Article} from "@/lib/type/article";
 
-export const revalidate = 60
 
 export async function generateStaticParams() {
-  const data = await getArticles()
-  return data.contents.map((article) => ({ id: article.id }))
+    return [{ slug: 'welcome' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }]
 }
 
 function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
@@ -32,10 +29,9 @@ function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
   }
 }
 
-export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   try {
-    const resolvedParams = await props.params;
-    const article = await getArticle(resolvedParams.id)
+    const article = {} as Article;
     const ogpDimensions = article.eyecatch?.width && article.eyecatch?.height 
       ? calculateOGPDimensions(article.eyecatch.width, article.eyecatch.height)
       : undefined
@@ -70,10 +66,9 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
   }
 }
 
-export default async function BlogDetailPage(props: { params: Promise<{ id: string }> }) {
+export default async function BlogDetailPage() {
   try {
-    const resolvedParams = await props.params;
-    const article = await getArticle(resolvedParams.id)
+    const article = {} as Article;
     const publishDate = new Date(article.publishedAt)
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`
 
@@ -107,8 +102,6 @@ export default async function BlogDetailPage(props: { params: Promise<{ id: stri
                     </div>
                   </div>
                 )}
-
-                <ServerHTMLContent content={article.content || ''} />
               </article>
             </div>
 

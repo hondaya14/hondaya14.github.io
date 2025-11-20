@@ -1,4 +1,4 @@
-import { getArticles } from '../src/lib/microcms';
+import { getArticles } from '@/lib/article';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
