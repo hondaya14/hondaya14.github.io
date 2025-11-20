@@ -3,6 +3,7 @@
 import React from "react"
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { darcula as theme } from "react-syntax-highlighter/dist/esm/styles/prism"
+import java from 'react-syntax-highlighter/dist/esm/languages/prism/java'
 import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript'
 import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript'
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
@@ -29,6 +30,7 @@ type CodeBlockProps = {
 
 export function CodeBlock({ language, children, inline = false }: CodeBlockProps) {
   const langMap: Record<string, string> = {
+    java: 'java',
     js: 'javascript',
     javascript: 'javascript',
     jsx: 'jsx',
@@ -55,12 +57,12 @@ export function CodeBlock({ language, children, inline = false }: CodeBlockProps
   }
 
   return (
-    <div className="my-4 overflow-hidden rounded-lg border" style={{ borderColor: '#2f3336' }}>
-      <div className="flex items-center justify-between px-3 py-2 text-xs" style={{ background: '#3c3f41', color: '#e0e0e0', borderBottom: '1px solid #2f3336' }}>
+    <div className="ml-auto mr-auto w-2/3 my-3 overflow-hidden rounded-lg" style={{ borderColor: '#2f3336' }}>
+      <div className="flex items-center justify-between px-3 py-1 text-xs" style={{ background: '#3c3f41', color: '#e0e0e0', borderBottom: '1px solid #2f3336' }}>
         <div className="flex items-center gap-1.5">
-          <span className="inline-block h-3 w-3 rounded-full" style={{ background: '#ff5f56' }} />
-          <span className="inline-block h-3 w-3 rounded-full" style={{ background: '#ffbd2e' }} />
-          <span className="inline-block h-3 w-3 rounded-full" style={{ background: '#27c93f' }} />
+          <span className="inline-block h-2 w-2 rounded-full" style={{ background: '#ff5f56' }} />
+          <span className="inline-block h-2 w-2 rounded-full" style={{ background: '#ffbd2e' }} />
+          <span className="inline-block h-2 w-2 rounded-full" style={{ background: '#27c93f' }} />
         </div>
         {normalized && (
           <span aria-label="code language" className="tracking-wide" style={{ opacity: 0.8 }}>
@@ -71,7 +73,6 @@ export function CodeBlock({ language, children, inline = false }: CodeBlockProps
       <SyntaxHighlighter
         language={normalized}
         style={theme}
-        showLineNumbers
         wrapLongLines
         customStyle={{
           margin: 0,
