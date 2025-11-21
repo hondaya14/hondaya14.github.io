@@ -40,49 +40,48 @@ function RssButton() {
 
 function Thumbnail(article: Article): React.JSX.Element {
     return (
-        <article key={article.id} className="border-b border-gray-600 pb-8 last:border-b-0">
-            <div className="flex flex-col sm:flex-row gap-6">
-                <div className="sm:w-1/3">
-                    <Link href={`/blog/${article.id}`} className="block aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
-                        {article.eyecatch?.url ? (
-                            <Image
-                                src={article.eyecatch.url}
-                                alt=""
-                                width={article.eyecatch.width || 400}
-                                height={article.eyecatch.height || 225}
-                                className="max-w-full max-h-full object-contain"
-                                unoptimized={true}
-                            />
-                        ) : (
-                            <div className="flex items-center justify-center">
-                                <span className="text-4xl">🫠</span>
-                            </div>
-                        )}
-                    </Link>
-                </div>
-                <div className="sm:w-2/3 space-y-2">
-                    <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <time dateTime={article.publishedAt} className="font-bold">
-                            {(() => {
-                                const date = new Date(article.publishedAt);
-                                return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
-                            })()}
-                        </time>
-                        {article.category && (
-                            <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
-                              {article.category.name}
-                            </span>
-                        )}
-                        <span className="px-2 py-1 bg-gray-800/30 backdrop-blur-sm border border-gray-600/40 text-gray-200 text-xs rounded-full">
-                            {readTime(article.content)}
-                          </span>
+        <article key={article.id} className="border-b border-gray-600 last:border-b-0">
+            {/*hover:from-blue-400 hover:via-black-500 hover:to-blue-600*/}
+            <Link href={`/blog/${article.id}`} className="no-underline">
+                <div className="flex flex-col sm:flex-row gap-6">
+                    <div className="sm:w-1/3">
+                        <div className="aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                            {article.eyecatch?.url ? (
+                                <Image
+                                    src={article.eyecatch.url}
+                                    alt=""
+                                    width={article.eyecatch.width || 400}
+                                    height={article.eyecatch.height || 225}
+                                    className="max-w-full max-h-full object-contain"
+                                    unoptimized={true}
+                                />
+                            ) : (
+                                <div className="flex items-center justify-center">
+                                    <span className="text-4xl">🫠</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <Link href={`/blog/${article.id}`} className="no-underline space-y-1 block">
-                        <h3 className="text-xl font-semibold text-white">{article.title}</h3>
-                        <p className="text-sm text-gray-300">{excerpt(article.content)}</p>
-                    </Link>
+                    <div className="sm:w-2/3 space-y-2">
+                        <div className="flex items-center gap-4 text-sm text-gray-300">
+                            <time dateTime={article.publishedAt} className="font-bold">
+                                {(() => {
+                                    const date = new Date(article.publishedAt);
+                                    return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+                                })()}
+                            </time>
+                            <span className="px-4 py-1 bg-gray-800/30  text-xs rounded-full">{readTime(article.content)}</span>
+                            {article.tags.map((tag) => (
+                              <span key={tag} className="px-2 py-1 bg-[#222222] text-xs rounded">{tag}</span>
+                            ))}
+                        </div>
+                        <div className=" space-y-1 block">
+                            <h3 className="text-xl font-semibold text-white">{article.title}</h3>
+                            <p className="text-sm text-gray-300">{excerpt(article.content)}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </Link>
         </article>
     );
 }
@@ -93,29 +92,24 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
       <header className="sticky top-0 z-50 border-b border-gray-600 bg-[#101114]/90 backdrop-blur">
         <RssButton/>
       </header>
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <main className="py-12">
           {/* Left Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0">
               {/*<p>Access Ranking</p>*/}
           </aside>
 
           {/* Main Content */}
-          <div className="flex-1 flex flex-col lg:max-w-4xl">
-            <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
-              <div className="space-y-12">
+          <div className="ml-auto mr-auto flex-1 flex flex-col lg:max-w-4xl">
+            <div className="bg-[#15171a] rounded-lg p-5">
                 {articles.map((article) => (
                     <Thumbnail key={article.id} {...article} />
                 ))}
-              </div>
-            </div>
-              <ZennExternalLinkBar/>
+            </div><ZennExternalLinkBar/>
           </div>
 
           {/* Right Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0">
           </aside>
-        </div>
       </main>
 
       <footer className="py-8 border-t border-gray-600 text-center">

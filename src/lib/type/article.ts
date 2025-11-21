@@ -8,8 +8,5 @@ export type Article = {
     height: number;
     width: number;
   } | null;
-  category?: {
-    id: string;
-    name: string;
-  } | null;
+  tags: string[];
 };

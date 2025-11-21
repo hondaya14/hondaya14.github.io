@@ -10,10 +10,10 @@ type ArticlesResponse = {
 /**
  * Parse a markdown file string with frontmatter into Frontmatter + body.
  */
-function parseFrontmatter(raw: string): { data: Frontmatter; body: string } {
-  if (!raw.startsWith("---")) return { data: { title: "", date: "", tags: [] }, body: raw };
+function parseFrontmatter(raw: string): { frontmatter: Frontmatter; body: string } {
+  if (!raw.startsWith("---")) return { frontmatter: { title: "", date: "", tags: [] }, body: raw };
   const end = raw.indexOf("\n---", 3);
-  if (end === -1) return { data: { title: "", date: "", tags: [] }, body: raw };
+  if (end === -1) return { frontmatter: { title: "", date: "", tags: [] }, body: raw };
   const header = raw.slice(3, end + 1).trim();
   const body = raw.slice(end + 4).replace(/^\n+/, "");
   const interim: Record<string, unknown> = {};
@@ -41,7 +41,7 @@ function parseFrontmatter(raw: string): { data: Frontmatter; body: string } {
         ? [String(interim.tags)]
         : [],
   };
-  return { data, body };
+  return { frontmatter: data, body };
 }
 
 /**
@@ -62,9 +62,9 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
     const mdPath = path.join(rootDir, slug, `${slug}.md`);
     try {
       const raw = await fs.readFile(mdPath, "utf8");
-      const { data, body } = parseFrontmatter(raw);
+      const { frontmatter, body } = parseFrontmatter(raw);
       const nowIso = new Date().toISOString();
-      const parsed = data.date ? new Date(data.date) : new Date();
+      const parsed = frontmatter.date ? new Date(frontmatter.date) : new Date();
       const dateIso = isNaN(parsed.getTime()) ? nowIso : parsed.toISOString();
 
       const thumbPublicUrl = `/blogs/${slug}/thumbnail.png`;
@@ -80,10 +80,10 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
       articles.push({
         id: slug,
         publishedAt: dateIso,
-        title: data.title || slug,
+        title: frontmatter.title || slug,
         content: body,
         eyecatch: eyecatchUrl ? { url: eyecatchUrl, width: 800, height: 450 } : null,
-        category: null,
+        tags: frontmatter.tags,
       });
     } catch {
       continue;
@@ -99,37 +99,28 @@ export async function getContentMasterArticle(slug: string): Promise<Article | n
   const mdPath = path.join(rootDir, slug, `${slug}.md`);
   try {
     const raw = await fs.readFile(mdPath, "utf8");
-    const { data, body } = parseFrontmatter(raw);
+    const { frontmatter, body } = parseFrontmatter(raw);
     const nowIso = new Date().toISOString();
-    const parsed = data.date ? new Date(data.date) : new Date();
+    const parsed = frontmatter.date ? new Date(frontmatter.date) : new Date();
     const dateIso = isNaN(parsed.getTime()) ? nowIso : parsed.toISOString();
 
     const thumbPublicUrl = `/blogs/${slug}/thumbnail.png`;
-    const thumbPublicUrlTypo = `/blogs/${slug}/thumnbnail.png`;
     const contentThumb = path.join(rootDir, slug, "thumbnail.png");
-    const contentThumbTypo = path.join(rootDir, slug, "thumnbnail.png");
     let eyecatchUrl: string | null = null;
     try {
       await fs.access(contentThumb);
       eyecatchUrl = thumbPublicUrl;
     } catch {
-      try {
-        await fs.access(contentThumbTypo);
-        eyecatchUrl = thumbPublicUrlTypo;
-      } catch {
         eyecatchUrl = null;
-      }
     }
 
     return {
       id: slug,
-      createdAt: dateIso,
-      updatedAt: dateIso,
       publishedAt: dateIso,
-      title: data.title || slug,
+      title: frontmatter.title || slug,
       content: body,
       eyecatch: eyecatchUrl ? { url: eyecatchUrl, width: 800, height: 450 } : null,
-      category: null,
+      tags: frontmatter.tags,
     };
   } catch {
     return null;
