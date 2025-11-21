@@ -17,8 +17,8 @@ async function generateRssFeed() {
     }
 
     // 記事データの取得
-    const { contents } = await getArticles();
-    console.log(`✅ Got ${contents.length} articles`);
+    const { articles } = await getArticles();
+    console.log(`✅ Got ${articles.length} articles`);
 
     const siteURL = 'https://hondaya.co';
     const date = new Date();
@@ -44,7 +44,7 @@ async function generateRssFeed() {
     });
 
     // 記事をフィードに追加
-    contents.forEach((post: Article) => {
+    articles.forEach((post: Article) => {
       const url = `${siteURL}/blog/${post.id}`;
       
       feed.addItem({

@@ -29,7 +29,7 @@ async function generateSitemap() {
       }
     ];
 
-    const blogPages = articles.contents.map(article => ({
+    const blogPages = articles.articles.map(article => ({
       url: `${DOMAIN}/blog/${article.id}`,
       lastmod: article.updatedAt.split('T')[0],
       changefreq: 'monthly',

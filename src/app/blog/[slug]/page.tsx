@@ -1,24 +1,23 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Calendar } from 'lucide-react'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Script from 'next/script'
 import { ExpandableImage } from '@/components/ExpandableImage'
 import { lineSeedFont } from '@/lib/fonts'
-import {Article} from "@/lib/type/article";
-import MDXContent from "@/app/blog/sample/content.mdx";
-import {mdxCodeComponents} from "@/components/MdxCode";
-import fs from "fs";
+import type { Article } from "@/lib/type/article";
+import { getContentMasterArticle } from '@/lib/article'
+import { mdxCodeComponents } from "@/components/MdxCode";
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import fs from "fs"
 
 
 export async function generateStaticParams() {
-    // Read slugs from content-master/blogs directory
-    const slugs = fs.readdirSync(
-        'content-master/blogs',
-        {withFileTypes: true}
-    ).filter(dirent => dirent.isDirectory()
-    ).map(({name}) => name);
-    return slugs;
+  // Build static params from content-master/blogs
+  const slugs = fs.readdirSync('content-master/blogs', { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map(({ name }) => ({ slug: name }));
+  return slugs;
 }
 
 function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
@@ -38,9 +37,10 @@ function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
   }
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   try {
-    const article = {} as Article;
+    const article = await getContentMasterArticle(params.slug);
+    if (!article) return { title: 'Article Not Found' };
     const ogpDimensions = article.eyecatch?.width && article.eyecatch?.height 
       ? calculateOGPDimensions(article.eyecatch.width, article.eyecatch.height)
       : undefined
@@ -75,9 +75,10 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function BlogDetailPage() {
+export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
   try {
-    const article = {} as Article;
+    const article = await getContentMasterArticle(params.slug);
+    if (!article) return notFound();
     const publishDate = new Date(article.publishedAt)
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`
 
@@ -90,7 +91,6 @@ export default async function BlogDetailPage() {
             </aside>
 
             {/* Main Content */}
-            <MDXContent components={mdxCodeComponents} />
             <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
               <article className="prose mx-auto">
                 <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
@@ -112,6 +112,8 @@ export default async function BlogDetailPage() {
                     </div>
                   </div>
                 )}
+
+                <MDXRemote source={article.content} components={mdxCodeComponents} />
               </article>
             </div>
 
