@@ -100,11 +100,12 @@ export default function BlogClient({ articles }: { articles: Article[] }) {
 
           {/* Main Content */}
           <div className="ml-auto mr-auto flex-1 flex flex-col lg:max-w-4xl">
-            <div className="bg-[#15171a] rounded-lg p-5">
-                {articles.map((article) => (
-                    <Thumbnail key={article.id} {...article} />
-                ))}
-            </div><ZennExternalLinkBar/>
+                <div className="bg-[#15171a] rounded-lg p-5">
+                    {articles.map((article) => (
+                        <Thumbnail key={article.id} {...article} />
+                    ))}
+                </div>
+              <ZennExternalLinkBar/>
           </div>
 
           {/* Right Sidebar */}

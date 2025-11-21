@@ -84,29 +84,32 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
 
     return (
       <div className="min-h-screen bg-[#101114] text-white font-sans">
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main className="py-12">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Sidebar */}
             <aside className="hidden lg:block w-64 shrink-0">
             </aside>
 
             {/* Main Content */}
-            <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
-              <article className="prose mx-auto">
+            <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
+              <article className="ml-auto mr-auto">
                 <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <time dateTime={article.publishedAt}>{formattedDate}</time>
+                    {article.tags.map((tag) => (
+                        <span key={tag} className="px-3 py-1 bg-[#222222] text-xs rounded">{tag}</span>
+                    ))}
                 </div>
                 <h1 className={`text-3xl font-semibold mb-6 text-white ${lineSeedFont.className}`}>{article.title}</h1>
 
                 {article.eyecatch?.url && (
                   <div className="flex justify-center mb-6">
-                    <div className="w-full max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                    <div className="w-1/2 max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
                       <ExpandableImage
                         src={article.eyecatch.url}
                         alt=""
-                        width={article.eyecatch.width || 800}
-                        height={article.eyecatch.height || 450}
+                        width={article.eyecatch.width}
+                        height={article.eyecatch.height}
                         className="max-w-full max-h-full object-contain"
                       />
                     </div>
