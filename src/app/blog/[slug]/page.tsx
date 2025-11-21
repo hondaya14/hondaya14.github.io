@@ -6,10 +6,19 @@ import Script from 'next/script'
 import { ExpandableImage } from '@/components/ExpandableImage'
 import { lineSeedFont } from '@/lib/fonts'
 import {Article} from "@/lib/type/article";
+import MDXContent from "@/app/blog/sample/content.mdx";
+import {mdxCodeComponents} from "@/components/MdxCode";
+import fs from "fs";
 
 
 export async function generateStaticParams() {
-    return [{ slug: 'welcome' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }, { slug: 'about' }]
+    // Read slugs from content-master/blogs directory
+    const slugs = fs.readdirSync(
+        'content-master/blogs',
+        {withFileTypes: true}
+    ).filter(dirent => dirent.isDirectory()
+    ).map(({name}) => name);
+    return slugs;
 }
 
 function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
@@ -81,6 +90,7 @@ export default async function BlogDetailPage() {
             </aside>
 
             {/* Main Content */}
+            <MDXContent components={mdxCodeComponents} />
             <div className="flex-1 lg:max-w-4xl bg-[#15171a] rounded-lg p-6">
               <article className="prose mx-auto">
                 <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
