@@ -1,0 +1,3 @@
+[submodule "content-master"]
+	path = content-master
+	url = git@github.com:hondaya14/content-master.git
