@@ -116,7 +116,9 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
                   </div>
                 )}
 
-                <MDXRemote source={article.content} components={mdxCodeComponents} />
+                <div className="text-gray-300 leading-loose">
+                  <MDXRemote source={article.content} components={mdxCodeComponents}  />
+                </div>
               </article>
             </div>
 

@@ -9,7 +9,7 @@ function stripHtml(html: string) {
   return html.replace(/<[^>]+>/g, '')
 }
 
-function excerpt(html: string, length = 120) {
+function excerpt(html: string, length = 80) {
   const text = stripHtml(html)
   return text.length > length ? text.slice(0, length) + '...' : text
 }
@@ -43,16 +43,16 @@ function Thumbnail(article: Article): React.JSX.Element {
         <article key={article.id} className="border-b border-gray-600 last:border-b-0">
             {/*hover:from-blue-400 hover:via-black-500 hover:to-blue-600*/}
             <Link href={`/blog/${article.id}`} className="no-underline">
-                <div className="flex flex-col sm:flex-row gap-6">
+                <div className="flex flex-col sm:flex-row gap-8 p-3">
                     <div className="sm:w-1/3">
-                        <div className="aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                        <div className="aspect-video bg-[#15171a] rounded overflow-hidden flex justify-center">
                             {article.eyecatch?.url ? (
                                 <Image
                                     src={article.eyecatch.url}
                                     alt=""
                                     width={article.eyecatch.width || 400}
                                     height={article.eyecatch.height || 225}
-                                    className="max-w-full max-h-full object-contain"
+                                    className="max-w-full max-h-full object-contain flex items-center justify-center"
                                     unoptimized={true}
                                 />
                             ) : (
@@ -75,7 +75,7 @@ function Thumbnail(article: Article): React.JSX.Element {
                               <span key={tag} className="px-2 py-1 bg-[#222222] text-xs rounded">{tag}</span>
                             ))}
                         </div>
-                        <div className=" space-y-1 block">
+                        <div className="">
                             <h3 className="text-xl font-semibold text-white">{article.title}</h3>
                             <p className="text-sm text-gray-300">{excerpt(article.content)}</p>
                         </div>
