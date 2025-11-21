@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "gen-rss": "bun run script/generate-rss.ts",
-    "gen-sitemap": "bun run script/generate-sitemap.ts"
+    "gen-sitemap": "bun run script/generate-sitemap.ts",
+    "copy-thumbnails": "bun run script/copy-thumbnails.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
