@@ -1,9 +1,0 @@
-name: microCMS webhook
-on:
-  workflow_dispatch:
-  repository_dispatch:
-
-jobs:
-  deploy:
-    uses: ./.github/workflows/build-deploy.yml
-    secrets: inherit

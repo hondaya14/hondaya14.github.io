@@ -1,9 +1,7 @@
-import { getArticles } from '@/lib/microcms'
 import BlogClient from './blog'
-
-export const revalidate = 60
+import { getContentMasterArticles } from '@/lib/article'
 
 export default async function BlogPage() {
-  const data = await getArticles()
-  return <BlogClient articles={data.contents} />
+    const data = await getContentMasterArticles();
+    return <BlogClient articles={data.articles} />
 }

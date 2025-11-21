@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Article, getArticles } from '../src/lib/microcms';
+import { Article } from '@/lib/type/article';
+import { getContentMasterArticles } from '@/lib/article';
 import { Feed } from 'feed';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -10,14 +11,9 @@ async function generateRssFeed() {
   try {
     console.log('🏃‍♂️ Start generate RSS feed...');
     
-    // APIキーの確認
-    if (!process.env.MICROCMS_API_KEY) {
-      throw new Error('Not setted MICROCMS_API_KEY.');
-    }
-
-    // 記事データの取得
-    const { contents } = await getArticles();
-    console.log(`✅ Got ${contents.length} articles`);
+    // 記事データの取得（content-master から）
+    const contents = await getContentMasterArticles();
+    console.log(`✅ Got ${contents.articles.length} articles`);
 
     const siteURL = 'https://hondaya.co';
     const date = new Date();
@@ -43,7 +39,7 @@ async function generateRssFeed() {
     });
 
     // 記事をフィードに追加
-    contents.forEach((post: Article) => {
+    contents.articles.forEach((post: Article) => {
       const url = `${siteURL}/blog/${post.id}`;
       
       feed.addItem({

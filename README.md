@@ -1,6 +1,6 @@
 # hondaya14.github.io
 
-This repository contains the source code for [hondaya.co](https://hondaya.co), Yasuhisa Honda's personal website and blog. The site is built with **Next.js** and styled with **Tailwind CSS**. Blog articles are managed using **microCMS** and the project is designed to be statically exported for deployment to GitHub Pages.
+This repository contains the source code for [hondaya.co](https://hondaya.co), Yasuhisa Honda's personal website and blog. The site is built with **Next.js** and styled with **Tailwind CSS**. the project is designed to be statically exported for deployment to GitHub Pages.
 
 ## Development
 
@@ -22,9 +22,6 @@ bun run build
 - `bun run gen-rss` generates `public/blog/feed.xml`.
 - `bun run gen-sitemap` generates `public/sitemap.xml` referenced by `public/robots.txt`.
 
-## Environment Variables
-
-Access to microCMS requires the `MICROCMS_API_KEY` environment variable. See `.env.example` for the required key name.
 
 ## Scripts
 
