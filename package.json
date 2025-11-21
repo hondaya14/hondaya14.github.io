@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run gen-rss && bun run gen-sitemap && next build",
+    "build": "bun run copy-thumbnails && bun run gen-rss && bun run gen-sitemap && next build",
     "start": "next start",
     "lint": "next lint",
     "gen-rss": "bun run script/generate-rss.ts",

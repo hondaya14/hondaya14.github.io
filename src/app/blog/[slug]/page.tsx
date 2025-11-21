@@ -5,7 +5,6 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { ExpandableImage } from '@/components/ExpandableImage'
 import { lineSeedFont } from '@/lib/fonts'
-import type { Article } from "@/lib/type/article";
 import { getContentMasterArticle } from '@/lib/article'
 import { mdxCodeComponents } from "@/components/MdxCode";
 import { MDXRemote } from 'next-mdx-remote/rsc'
@@ -37,9 +36,10 @@ function calculateOGPDimensions(originalWidth: number, originalHeight: number) {
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
-    const article = await getContentMasterArticle(params.slug);
+    const { slug } = await params;
+    const article = await getContentMasterArticle(slug);
     if (!article) return { title: 'Article Not Found' };
     const ogpDimensions = article.eyecatch?.width && article.eyecatch?.height 
       ? calculateOGPDimensions(article.eyecatch.width, article.eyecatch.height)
@@ -75,9 +75,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+export default async function BlogDetailPage(
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const article = await getContentMasterArticle(params.slug);
+    const { slug } = await params;
+    const article = await getContentMasterArticle(slug);
     if (!article) return notFound();
     const publishDate = new Date(article.publishedAt)
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, '0')}/${String(publishDate.getDate()).padStart(2, '0')}`

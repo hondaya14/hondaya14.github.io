@@ -92,7 +92,7 @@ h6 {
 }
 
 /* Ensure links in content have proper styling */
-.prose-a\\:underline a {
+.prose-a a {
   text-decoration: underline;
   color: #ffffff;
 }

@@ -1,4 +1,4 @@
-import { getArticles } from '@/lib/article';
+import { getContentMasterArticles } from '@/lib/article';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -6,7 +6,7 @@ const DOMAIN = 'https://hondaya.co';
 
 async function generateSitemap() {
   try {
-    const articles = await getArticles();
+    const contents  = await getContentMasterArticles();
     
     const staticPages = [
       {
@@ -29,9 +29,9 @@ async function generateSitemap() {
       }
     ];
 
-    const blogPages = articles.articles.map(article => ({
+    const blogPages = contents.articles.map(article => ({
       url: `${DOMAIN}/blog/${article.id}`,
-      lastmod: article.updatedAt.split('T')[0],
+      lastmod: article.publishedAt.split('T')[0],
       changefreq: 'monthly',
       priority: '0.7'
     }));

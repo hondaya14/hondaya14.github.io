@@ -13,6 +13,7 @@ import diff from 'react-syntax-highlighter/dist/esm/languages/prism/diff'
 import json from 'react-syntax-highlighter/dist/esm/languages/prism/json'
 import kotlin from 'react-syntax-highlighter/dist/esm/languages/prism/kotlin'
 
+SyntaxHighlighter.registerLanguage('java', java)
 SyntaxHighlighter.registerLanguage('javascript', javascript)
 SyntaxHighlighter.registerLanguage('typescript', typescript)
 SyntaxHighlighter.registerLanguage('jsx', jsx)
