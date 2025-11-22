@@ -10,11 +10,21 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
     steps:
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
