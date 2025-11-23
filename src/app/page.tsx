@@ -5,6 +5,7 @@ import Link from "next/link";
 import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { Log } from "@/components/LogClient";
 
 export default function Home() {
   return (
@@ -38,6 +39,9 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <Log/>
     </div>
   );
 }
+
+
