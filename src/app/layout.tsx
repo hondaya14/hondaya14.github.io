@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
-import { notoSansJp } from "@/lib/fonts";
+import { NOTO_SANS_JP } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,20 +15,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <head>
         {/* Google Analytics */}
-        <GoogleAnalytics/>
+        <GoogleAnalytics />
         {/* Google AdSense */}
-        <GoogleAdSense/>
+        <GoogleAdSense />
         {/* PWA Manifest & Apple settings */}
-        <PWAHead/>
+        <PWAHead />
       </head>
-      <body className={`${notoSansJp.className} antialiased`}>
-        {children}
-      </body>
+      <body className={`${NOTO_SANS_JP.className} antialiased`}>{children}</body>
     </html>
   );
 }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { LM } from '@/lib/global';
+import { useEffect } from "react";
+import { LM } from "@/lib/global";
 
 export function Log() {
   useEffect(() => {

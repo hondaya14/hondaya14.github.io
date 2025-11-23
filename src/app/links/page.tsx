@@ -1,25 +1,22 @@
-import React from 'react'
-import LinksSection, { LinkItem } from '@/components/LinksSection'
+import React from "react";
+import LinksSection, { LinkItem } from "@/components/LinksSection";
 
 export const metadata = {
-  title: 'Links',
-}
+  title: "Links",
+};
 
 export default function LinksPage() {
   const techBlogLinks: LinkItem[] = [
-    { url: 'https://techblog.lycorp.co.jp/ja/20250708a' },
-    { url: 'https://techblog.lycorp.co.jp/ja/20231208a' },
-  ]
+    { url: "https://techblog.lycorp.co.jp/ja/20250708a" },
+    { url: "https://techblog.lycorp.co.jp/ja/20231208a" },
+  ];
 
   const eventLinks: LinkItem[] = [
-    { url: 'https://hacku.yahoo.co.jp/hacku2025_osaka/' },
-    { url: 'https://engineering.linecorp.com/ja/blog/internship2021-hackathon' },
-  ]
+    { url: "https://hacku.yahoo.co.jp/hacku2025_osaka/" },
+    { url: "https://engineering.linecorp.com/ja/blog/internship2021-hackathon" },
+  ];
 
-  const talkLinks: LinkItem[] = [
-    { url: 'https://freee.connpass.com/event/304573/' },
-  ]
-
+  const talkLinks: LinkItem[] = [{ url: "https://freee.connpass.com/event/304573/" }];
 
   return (
     <div className="min-h-screen bg-[#101114] text-white p-8">
@@ -30,5 +27,5 @@ export default function LinksPage() {
         <LinksSection title="Talks" links={talkLinks} />
       </div>
     </div>
-  )
+  );
 }

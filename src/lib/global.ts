@@ -1,5 +1,3 @@
-
-
 export const LM = String.raw`
                                      :#@@@@@@%+.                                              
                             @@@@@@@@#          .%@@@@@@@@                                     

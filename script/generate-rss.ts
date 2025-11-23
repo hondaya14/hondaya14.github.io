@@ -1,30 +1,30 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { Article } from '@/lib/type/article';
-import { getContentMasterArticles } from '@/lib/article';
-import { Feed } from 'feed';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { Article } from "@/lib/type/article";
+import { getContentMasterArticles } from "@/lib/article";
+import { Feed } from "feed";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function generateRssFeed() {
   try {
-    console.log('🏃‍♂️ Start generate RSS feed...');
-    
+    console.log("🏃‍♂️ Start generate RSS feed...");
+
     // 記事データの取得（content-master から）
     const contents = await getContentMasterArticles();
     console.log(`✅ Got ${contents.articles.length} articles`);
 
-    const siteURL = 'https://hondaya.co';
+    const siteURL = "https://hondaya.co";
     const date = new Date();
-    
+
     // フィード作成
     const feed = new Feed({
-      title: 'hondaya blog feed',
-      description: 'hondaya blog feed',
+      title: "hondaya blog feed",
+      description: "hondaya blog feed",
       id: siteURL,
       link: siteURL,
-      language: 'ja',
+      language: "ja",
       image: `${siteURL}/icon.png`,
       favicon: `${siteURL}/favicon.ico`,
       copyright: `All rights reserved ${date.getFullYear()}`,
@@ -33,7 +33,7 @@ async function generateRssFeed() {
         rss2: `${siteURL}/blog/feed.xml`,
       },
       author: {
-        name: 'hondaya.co',
+        name: "hondaya.co",
         link: siteURL,
       },
     });
@@ -41,16 +41,16 @@ async function generateRssFeed() {
     // 記事をフィードに追加
     contents.articles.forEach((post: Article) => {
       const url = `${siteURL}/blog/${post.id}`;
-      
+
       feed.addItem({
         title: post.title,
         id: url,
         link: url,
-        description: post.content.substring(0, 100).replace(/<[^>]*>/g, ''),
+        description: post.content.substring(0, 100).replace(/<[^>]*>/g, ""),
         content: post.content,
         author: [
           {
-            name: 'hondaya.co',
+            name: "hondaya.co",
             link: siteURL,
           },
         ],
@@ -59,19 +59,19 @@ async function generateRssFeed() {
     });
 
     // 出力ディレクトリの作成
-    const outputDir = path.join(__dirname, '../public/blog');
+    const outputDir = path.join(__dirname, "../public/blog");
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
     // RSSフィードの書き込み
-    const outputPath = path.join(outputDir, 'feed.xml');
+    const outputPath = path.join(outputDir, "feed.xml");
     fs.writeFileSync(outputPath, feed.rss2());
 
     console.log(`🆗 Generated RSS feed: ${outputPath}`);
     return true;
   } catch (error) {
-    console.error('❌ Error occurred while generating RSS feed:', error);
+    console.error("❌ Error occurred while generating RSS feed:", error);
     process.exit(1);
   }
 }

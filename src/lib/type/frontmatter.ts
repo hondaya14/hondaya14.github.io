@@ -3,4 +3,3 @@ export type Frontmatter = {
   date: string; // ISO or parseable date string
   tags: string[];
 };
-

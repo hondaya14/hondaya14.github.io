@@ -7,6 +7,32 @@ on:
       - main
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+      - name: Lint by ESLint
+        run: bun eslint .
+      - name: Format check by prettier
+        run: bun prettier . --check
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -18,19 +44,15 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
-
       - name: Install dependencies
         run: bun install
-
       - name: Run build
         run: bun run build

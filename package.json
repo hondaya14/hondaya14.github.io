@@ -7,6 +7,7 @@
     "build": "bun run copy-thumbnails && bun run gen-rss && bun run gen-sitemap && next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json,css,scss,html}\"",
     "gen-rss": "bun run script/generate-rss.ts",
     "gen-sitemap": "bun run script/generate-sitemap.ts",
     "copy-thumbnails": "bun run script/copy-thumbnails.ts"
@@ -50,6 +51,8 @@
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
     "eslint-config-next": "15.3.3",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   }

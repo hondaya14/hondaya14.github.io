@@ -11,6 +11,18 @@ bun install
 bun run dev
 ```
 
+### Formatter
+
+```bash
+bun prettier . --write
+```
+
+### Linter
+
+```bash
+bun eslint .
+```
+
 ## Build
 
 Generating the production build also creates the RSS feed and sitemap:
@@ -21,7 +33,6 @@ bun run build
 
 - `bun run gen-rss` generates `public/blog/feed.xml`.
 - `bun run gen-sitemap` generates `public/sitemap.xml` referenced by `public/robots.txt`.
-
 
 ## Scripts
 
