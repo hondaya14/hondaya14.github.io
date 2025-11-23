@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faMicrophone, faRss } from "@fortawesome/free-solid-svg-icons";
 import { lineSeedFont } from "@/lib/fonts";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Log } from "@/components/LogClient";
@@ -25,8 +25,11 @@ export default function Home() {
           <Link title="Blog" href="blog">
             <FontAwesomeIcon icon={faRss} className="w-9"/>
           </Link>
-          <Link title="Links" href="./links">
-            <FontAwesomeIcon icon={faLink} className="w-12"/>
+          <Link title="Publication" href="./publication">
+            <FontAwesomeIcon icon={faBookOpen} className="w-12"/>
+          </Link>
+          <Link title="Talk" href="./talk">
+            <FontAwesomeIcon icon={faMicrophone} className="w-12"/>
           </Link>
           <Link title="GitHub" href="https://github.com/hondaya14" target="_blank">
             <FontAwesomeIcon icon={faGithub as IconProp} className="w-10 "/>
