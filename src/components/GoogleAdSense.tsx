@@ -1,5 +1,4 @@
-import Script from 'next/script'
-
+import Script from "next/script";
 
 export default function GoogleAdSense() {
   return (
@@ -9,5 +8,5 @@ export default function GoogleAdSense() {
       crossOrigin="anonymous"
       strategy="afterInteractive"
     />
-  )
+  );
 }

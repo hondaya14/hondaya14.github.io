@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #101114;  /* Dark background */
-  --foreground: #ffffff;  /* White text */
+  --background: #101114; /* Dark background */
+  --foreground: #ffffff; /* White text */
 }
 
 /* Theme variables */
@@ -15,8 +15,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #101114;  /* Dark background */
-    --foreground: #ffffff;  /* White text */
+    --background: #101114; /* Dark background */
+    --foreground: #ffffff; /* White text */
   }
 }
 
@@ -128,7 +128,6 @@ article a.no-underline h3,
 article a.no-underline p {
   text-decoration: none !important;
 }
-
 
 /* Code block styles */
 .code-block {
@@ -250,11 +249,11 @@ article a.no-underline p {
 /* Blockquote styling */
 
 blockquote {
-  border-left: 4px solid #4C4948;
+  border-left: 4px solid #4c4948;
   padding-left: 1rem;
   margin: 1rem 0;
   font-style: italic;
-  color: #4C4948;
+  color: #4c4948;
 }
 
 blockquote::before {
@@ -263,7 +262,7 @@ blockquote::before {
   line-height: 0;
   margin-right: 0.25rem;
   vertical-align: -0.4rem;
-  color: #4C4948;
+  color: #4c4948;
 }
 
 /* Prose blockquote styling for blog content */
@@ -303,4 +302,3 @@ blockquote::before {
     color: #ffffff;
   }
 }
-

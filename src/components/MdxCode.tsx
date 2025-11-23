@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import React from 'react'
-import type { MDXComponents } from 'mdx/types'
-import { CodeBlock } from '@/components/CodeBlock'
+import React from "react";
+import type { MDXComponents } from "mdx/types";
+import { CodeBlock } from "@/components/CodeBlock";
 
 // function extractCodeChild(node: React.ReactNode) {
 //   const arr = React.Children.toArray(node)
@@ -28,15 +28,14 @@ import { CodeBlock } from '@/components/CodeBlock'
 // }
 
 export function InlineCode(props: React.HTMLAttributes<HTMLElement>) {
-  const className = (props.className || '') as string
-  const language = /language-([^\s]+)/.exec(className)?.[1] ?? null
-  const content = String(props.children || '')
-  if (language) return <CodeBlock language={language}>{content}</CodeBlock>
-  return <CodeBlock inline>{content}</CodeBlock>
+  const className = (props.className || "") as string;
+  const language = /language-([^\s]+)/.exec(className)?.[1] ?? null;
+  const content = String(props.children || "");
+  if (language) return <CodeBlock language={language}>{content}</CodeBlock>;
+  return <CodeBlock inline>{content}</CodeBlock>;
 }
 
 export const mdxCodeComponents: MDXComponents = {
   // pre: PreWithSyntax as never,
   code: InlineCode as never,
-}
-
+};

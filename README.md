@@ -22,7 +22,6 @@ bun run build
 - `bun run gen-rss` generates `public/blog/feed.xml`.
 - `bun run gen-sitemap` generates `public/sitemap.xml` referenced by `public/robots.txt`.
 
-
 ## Scripts
 
 - `bun run dev` - start Next.js in development mode

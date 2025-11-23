@@ -22,12 +22,15 @@ function parseFrontmatter(raw: string): { frontmatter: Frontmatter; body: string
     if (!m) continue;
     const key = m[1].trim();
     let value = m[2].trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     if (value.startsWith("[") && value.endsWith("]")) {
       const arr = value.slice(1, -1).trim();
-      interim[key] = arr ? arr.split(/\s*,\s*/).map(v => v.replace(/^['\"]|['\"]$/g, "")) : [];
+      interim[key] = arr ? arr.split(/\s*,\s*/).map((v) => v.replace(/^['\"]|['\"]$/g, "")) : [];
     } else {
       interim[key] = value;
     }
@@ -52,7 +55,7 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
   let slugs: string[] = [];
   try {
     const entries = await fs.readdir(rootDir, { withFileTypes: true });
-    slugs = entries.filter(e => e.isDirectory()).map(e => e.name);
+    slugs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
   } catch {
     slugs = [];
   }
@@ -74,7 +77,7 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
         await fs.access(contentThumb);
         eyecatchUrl = thumbPublicUrl;
       } catch {
-          eyecatchUrl = null;
+        eyecatchUrl = null;
       }
 
       articles.push({
@@ -111,7 +114,7 @@ export async function getContentMasterArticle(slug: string): Promise<Article | n
       await fs.access(contentThumb);
       eyecatchUrl = thumbPublicUrl;
     } catch {
-        eyecatchUrl = null;
+      eyecatchUrl = null;
     }
 
     return {

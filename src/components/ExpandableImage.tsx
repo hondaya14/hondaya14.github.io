@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { X } from 'lucide-react'
+import { useState } from "react";
+import Image from "next/image";
+import { X } from "lucide-react";
 
 interface ExpandableImageProps {
-  src: string
-  alt: string
-  width: number
-  height: number
-  className?: string
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
 }
 
 export function ExpandableImage({ src, alt, width, height, className }: ExpandableImageProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <>
@@ -26,9 +26,9 @@ export function ExpandableImage({ src, alt, width, height, className }: Expandab
         onClick={() => setIsExpanded(true)}
         unoptimized={true}
       />
-      
+
       {isExpanded && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={() => setIsExpanded(false)}
         >
@@ -45,12 +45,12 @@ export function ExpandableImage({ src, alt, width, height, className }: Expandab
               width={0}
               height={0}
               className="w-auto h-auto max-w-full max-h-full object-contain"
-              style={{ width: 'auto', height: 'auto' }}
+              style={{ width: "auto", height: "auto" }}
               unoptimized={true}
             />
           </div>
         </div>
       )}
     </>
-  )
+  );
 }
