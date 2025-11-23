@@ -11,6 +11,18 @@ bun install
 bun run dev
 ```
 
+### Formatter
+
+```bash
+bun prettier . --write
+```
+
+### Linter
+
+```bash
+bun eslint .
+```
+
 ## Build
 
 Generating the production build also creates the RSS feed and sitemap:
