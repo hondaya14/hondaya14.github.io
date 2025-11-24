@@ -10,7 +10,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json,css,scss,html}\"",
     "gen-rss": "bun run script/generate-rss.ts",
     "gen-sitemap": "bun run script/generate-sitemap.ts",
-    "copy-thumbnails": "bun run script/copy-thumbnails.ts"
+    "copy-thumbnails": "bun run script/copy-public.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

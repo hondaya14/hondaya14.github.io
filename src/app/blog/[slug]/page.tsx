@@ -11,9 +11,9 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import fs from "fs";
 
 export async function generateStaticParams() {
-  // Build static params from content-master/blogs
+  // Build static params from content-master/blog
   const slugs = fs
-    .readdirSync("content-master/blogs", { withFileTypes: true })
+    .readdirSync("content-master/blog", { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map(({ name }) => ({ slug: name }));
   return slugs;

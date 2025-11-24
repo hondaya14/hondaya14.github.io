@@ -51,7 +51,7 @@ function parseFrontmatter(raw: string): { frontmatter: Frontmatter; body: string
  * Read local markdown posts and build Article objects.
  */
 export async function getContentMasterArticles(): Promise<ArticlesResponse> {
-  const rootDir = path.join(process.cwd(), "content-master", "blogs");
+  const rootDir = path.join(process.cwd(), "content-master", "blog");
   let slugs: string[] = [];
   try {
     const entries = await fs.readdir(rootDir, { withFileTypes: true });
@@ -70,7 +70,7 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
       const parsed = frontmatter.date ? new Date(frontmatter.date) : new Date();
       const dateIso = isNaN(parsed.getTime()) ? nowIso : parsed.toISOString();
 
-      const thumbPublicUrl = `/blogs/${slug}/thumbnail.png`;
+      const thumbPublicUrl = `/blog/${slug}/thumbnail.png`;
       const contentThumb = path.join(rootDir, slug, "thumbnail.png");
       let eyecatchUrl: string | null = null;
       try {
@@ -98,7 +98,7 @@ export async function getContentMasterArticles(): Promise<ArticlesResponse> {
 
 /** Load a single article by slug from content-master. */
 export async function getContentMasterArticle(slug: string): Promise<Article | null> {
-  const rootDir = path.join(process.cwd(), "content-master", "blogs");
+  const rootDir = path.join(process.cwd(), "content-master", "blog");
   const mdPath = path.join(rootDir, slug, `${slug}.md`);
   try {
     const raw = await fs.readFile(mdPath, "utf8");
@@ -107,7 +107,7 @@ export async function getContentMasterArticle(slug: string): Promise<Article | n
     const parsed = frontmatter.date ? new Date(frontmatter.date) : new Date();
     const dateIso = isNaN(parsed.getTime()) ? nowIso : parsed.toISOString();
 
-    const thumbPublicUrl = `/blogs/${slug}/thumbnail.png`;
+    const thumbPublicUrl = `/blog/${slug}/thumbnail.png`;
     const contentThumb = path.join(rootDir, slug, "thumbnail.png");
     let eyecatchUrl: string | null = null;
     try {
