@@ -39,7 +39,7 @@ async function copyPublic() {
 
     console.log(`✅ Done. Copied: ${copied}, Skipped (no matches): ${skipped}`);
   } catch (err) {
-    console.error("❌ Failed to copy thumbnails:", err);
+    console.error("❌ Failed to copy publics:", err);
     process.exit(1);
   }
 }

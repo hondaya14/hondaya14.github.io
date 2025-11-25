@@ -134,7 +134,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                   </div>
                 )}
 
-                <div className="text-gray-300 leading-loose">
+                <div className="blog-content text-gray-300 leading-loose">
                   <MDXRemote source={article.content} components={mdxCodeComponents} />
                 </div>
               </article>
