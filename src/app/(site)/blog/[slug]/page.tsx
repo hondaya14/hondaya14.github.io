@@ -63,13 +63,13 @@ export async function generateMetadata({
         images:
           article.eyecatch?.url && ogpDimensions
             ? [
-                {
-                  url: article.eyecatch.url,
-                  width: ogpDimensions.width,
-                  height: ogpDimensions.height,
-                  alt: article.title,
-                },
-              ]
+              {
+                url: article.eyecatch.url,
+                width: ogpDimensions.width,
+                height: ogpDimensions.height,
+                alt: article.title,
+              },
+            ]
             : undefined,
       },
       twitter: {
