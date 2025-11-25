@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ExpandableImage } from "@/components/ExpandableImage";
@@ -8,6 +8,7 @@ import { LINE_SEED } from "@/lib/fonts";
 import { getContentMasterArticle } from "@/lib/article";
 import { mdxCodeComponents } from "@/components/MdxCode";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import fs from "fs";
 
 export async function generateStaticParams() {
@@ -107,6 +108,24 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             {/* Main Content */}
             <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
               <article className="ml-auto mr-auto">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <Breadcrumbs
+                    items={[
+                      { label: "Home", href: "/" },
+                      { label: "Blog", href: "/blog" },
+                      { label: article.title },
+                    ]}
+                    className="text-gray-400"
+                  />
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-gray-700 text-gray-200 no-underline hover:bg-gray-800"
+                    aria-label="一覧に戻る"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    <span>一覧に戻る</span>
+                  </Link>
+                </div>
                 <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <time dateTime={article.publishedAt}>{formattedDate}</time>
