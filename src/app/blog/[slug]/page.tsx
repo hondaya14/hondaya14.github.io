@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar } from "lucide-react";
+import { Bookmark, Calendar, Twitter } from "lucide-react";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ExpandableImage } from "@/components/ExpandableImage";
@@ -96,6 +96,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     if (!article) return notFound();
     const publishDate = new Date(article.publishedAt);
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, "0")}/${String(publishDate.getDate()).padStart(2, "0")}`;
+    const articleUrl = `https://hondaya.co/blog/${slug}`;
+    const xShareUrl = `https://x.com/intent/post?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`;
+    const hatenaShareUrl = `https://b.hatena.ne.jp/entry/panel/?url=${encodeURIComponent(articleUrl)}&btitle=${encodeURIComponent(article.title)}`;
 
     return (
       <div className="min-h-screen bg-[#101114] text-white font-sans">
@@ -136,6 +139,30 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
                 <div className="blog-content text-gray-300 leading-loose">
                   <MDXRemote source={article.content} components={mdxCodeComponents} />
+                </div>
+
+                <div className="mt-8 border-t border-gray-700 pt-6">
+                  <h2 className="text-lg font-semibold mb-3">Share this article</h2>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href={xShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded bg-[#1d9bf0] p-3 text-white hover:bg-[#1a8cd8]"
+                      aria-label="Share this article on X"
+                    >
+                      <Twitter className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      href={hatenaShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded bg-[#008fde] p-3 text-white hover:bg-[#0078b9]"
+                      aria-label="Save this article to Hatena Bookmark"
+                    >
+                      <Bookmark className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </article>
             </div>
