@@ -19,7 +19,7 @@
     "@fortawesome/react-fontawesome": "^3.1.1",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "^16.0.3",
+    "@next/mdx": "^16.0.10",
     "@types/cheerio": "^1.0.0",
     "@types/mdx": "^2.0.13",
     "cheerio": "^1.1.2",
