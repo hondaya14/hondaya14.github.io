@@ -14,10 +14,10 @@ export function ResumeContent({ content }: ResumeContentProps) {
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <p className="text-base font-semibold mb-2 text-red-400">{children}</p>
+            <p className="text-base font-semibold mb-2 text-green-400">{children}</p>
           ),
           h2: ({ children }) => (
-            <p className="text-sm font-semibold mb-2 mt-4 text-red-400">{children}</p>
+            <p className="text-sm font-semibold mb-2 mt-4 text-green-400">{children}</p>
           ),
           h3: ({ children }) => (
             <p className="text-sm font-medium mb-1 mt-3 text-gray-300">{children}</p>
@@ -30,7 +30,7 @@ export function ResumeContent({ content }: ResumeContentProps) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-red-400 hover:text-red-300"
+              className="text-green-400 hover:text-green-300"
             >
               {children}
             </a>

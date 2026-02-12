@@ -84,7 +84,9 @@ export default function PrivacyPage() {
             </Link>
           </li>
         </ul>
-        <p className="text-gray-300">本サイトをご利用される場合は、上記内容に同意したものとみなします。</p>
+        <p className="text-gray-300">
+          本サイトをご利用される場合は、上記内容に同意したものとみなします。
+        </p>
         <p className="text-gray-300">お問い合わせは nqvno14[at]gmail.com からお願いいたします。</p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faXTwitter, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { faRss, faLink, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -78,6 +78,15 @@ export default function Home() {
             className="text-gray-400 hover:text-white transition-colors"
           >
             <FontAwesomeIcon icon={faLinkedin as IconProp} className="w-6 h-6" />
+          </Link>
+          <Link
+            title="Speaker Deck"
+            href="https://speakerdeck.com/hondaya14"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <FontAwesomeIcon icon={faSpeakerDeck as IconProp} className="w-6 h-6" />
           </Link>
         </div>
       </div>

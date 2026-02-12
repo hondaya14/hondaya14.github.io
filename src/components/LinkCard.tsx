@@ -33,11 +33,7 @@ export function LinkCard({ url, children, ogpData, size = "small" }: LinkCardPro
   const isLarge = size === "large";
 
   return (
-    <a
-      href={url}
-      target="_blank"
-      className={`block ${isLarge ? "p-4" : "p-3"} no-underline`}
-    >
+    <a href={url} target="_blank" className={`block ${isLarge ? "p-4" : "p-3"} no-underline`}>
       <div className={`flex ${isLarge ? "gap-4" : "gap-3"}`}>
         {ogpData.image && (
           <div

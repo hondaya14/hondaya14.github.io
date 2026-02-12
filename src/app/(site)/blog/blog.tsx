@@ -19,7 +19,7 @@ function getTagColor(tag: string): string {
   for (let i = 0; i < tag.length; i++) {
     hash = tag.charCodeAt(i) + ((hash << 5) - hash);
   }
-  
+
   // 蛍光カラーのリスト
   const colors = [
     "text-yellow-400",
@@ -33,7 +33,7 @@ function getTagColor(tag: string): string {
     "text-blue-400",
     "text-violet-400",
   ];
-  
+
   // ハッシュ値から色を選択（同じタグには常に同じ色）
   const index = Math.abs(hash) % colors.length;
   return colors[index];
@@ -71,7 +71,10 @@ function Thumbnail(article: Article): React.JSX.Element {
                 })()}
               </time>
               {article.tags.map((tag) => (
-                <span key={tag} className={`text-xs px-2 py-0.5 bg-gray-800/50 rounded ${getTagColor(tag)}`}>
+                <span
+                  key={tag}
+                  className={`text-xs px-2 py-0.5 bg-gray-800/50 rounded ${getTagColor(tag)}`}
+                >
                   {tag}
                 </span>
               ))}

@@ -19,7 +19,7 @@ export function ResumePageClient({ contentJa, contentEn }: ResumePageClientProps
         <button
           onClick={() => setLang("ja")}
           className={`transition-colors ${
-            lang === "ja" ? "text-red-400" : "text-gray-400 hover:text-white"
+            lang === "ja" ? "text-green-400" : "text-gray-400 hover:text-white"
           }`}
         >
           JP
@@ -27,7 +27,7 @@ export function ResumePageClient({ contentJa, contentEn }: ResumePageClientProps
         <button
           onClick={() => setLang("en")}
           className={`transition-colors ${
-            lang === "en" ? "text-red-400" : "text-gray-400 hover:text-white"
+            lang === "en" ? "text-green-400" : "text-gray-400 hover:text-white"
           }`}
         >
           EN
