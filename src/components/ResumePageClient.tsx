@@ -9,7 +9,13 @@ interface ResumePageClientProps {
   contentEn: string;
 }
 
-function ResumeHeader({ lang, setLang }: { lang: "ja" | "en"; setLang: (lang: "ja" | "en") => void }) {
+function ResumeHeader({
+  lang,
+  setLang,
+}: {
+  lang: "ja" | "en";
+  setLang: (lang: "ja" | "en") => void;
+}) {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
       <Link href="/" className="text-white font-bold no-underline">
@@ -47,7 +53,6 @@ export function ResumePageClient({ contentJa, contentEn }: ResumePageClientProps
         <ResumeHeader lang={lang} setLang={setLang} />
       </header>
       <main className="max-w-4xl mx-auto px-4 py-8">
-
         {/* Resume Content */}
         <div>
           <ResumeContent content={content} />
