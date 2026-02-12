@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleAdSense from "@/components/GoogleAdSense";
 import PWAHead from "@/components/PWAHead";
-import { NOTO_SANS_JP } from "@/lib/fonts";
+import { NOTO_SANS_JP, JETBRAINS_MONO } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
         {/* PWA Manifest & Apple settings */}
         <PWAHead />
       </head>
-      <body className={`${NOTO_SANS_JP.className} antialiased`}>{children}</body>
+      <body className={`${JETBRAINS_MONO.className} ${NOTO_SANS_JP.variable} antialiased`}>{children}</body>
     </html>
   );
 }
