@@ -22,9 +22,7 @@ export default function Home() {
         </h2>
 
         {/* Role */}
-        <p className="text-xs sm:text-sm font-light text-center text-gray-600">
-          Software Engineer
-        </p>
+        <p className="text-xs sm:text-sm font-light text-center text-gray-600">Software Engineer</p>
 
         {/* Links */}
         <div className="flex justify-center gap-6 mt-4">
