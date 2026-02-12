@@ -4,15 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/lib/type/article";
 
-function stripHtml(html: string) {
-  return html.replace(/<[^>]+>/g, "");
-}
-
-function excerpt(html: string, length = 80) {
-  const text = stripHtml(html);
-  return text.length > length ? text.slice(0, length) + "..." : text;
-}
-
 function getTagColor(tag: string): string {
   // タグの文字列からハッシュを計算
   let hash = 0;
