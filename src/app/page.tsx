@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import { faRss, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faRss, faLink, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Log } from "@/components/LogClient";
 
@@ -39,6 +39,13 @@ export default function Home() {
             className="text-gray-400 hover:text-white transition-colors"
           >
             <FontAwesomeIcon icon={faLink} className="w-6 h-6" />
+          </Link>
+          <Link
+            title="Resume"
+            href="/resume"
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <FontAwesomeIcon icon={faFileLines} className="w-6 h-6" />
           </Link>
           <Link
             title="GitHub"

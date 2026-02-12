@@ -271,6 +271,36 @@ article a.no-underline p {
   }
 }
 
+/* Resume page table styles - no colors, no horizontal scroll */
+.resume-content table {
+  font-size: 13px;
+  display: table !important;
+  width: 100%;
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow-x: visible !important;
+}
+
+.resume-content table th {
+  background-color: transparent;
+  font-weight: 700;
+  border-color: #4b5563;
+  border-bottom-width: 2px;
+  font-size: 13px;
+  padding: 0.5rem;
+  letter-spacing: 0.025em;
+}
+
+.resume-content table td {
+  background-color: transparent;
+  border-color: #4b5563;
+  font-size: 13px;
+  padding: 0.5rem;
+  white-space: normal;
+  word-wrap: break-word;
+  font-weight: 400;
+}
+
 /* Blockquote styling */
 
 blockquote {
