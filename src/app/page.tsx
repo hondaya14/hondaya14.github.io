@@ -1,6 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin, faXTwitter, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faLinkedin,
+  faXTwitter,
+  faSpeakerDeck,
+} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { faRss, faLink, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
