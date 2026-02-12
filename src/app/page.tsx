@@ -5,6 +5,11 @@ import Link from "next/link";
 import { faRss, faLink, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Log } from "@/components/LogClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "home | hondaya",
+};
 
 export default function Home() {
   return (

@@ -19,9 +19,9 @@ export default function LinksPage() {
   const talkLinks: LinkItem[] = [{ url: "https://freee.connpass.com/event/304573/" }];
 
   return (
-    <div className="min-h-screen bg-[#101114] text-white p-8">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto space-y-8">
-        <h1 className="text-3xl font-semibold">Links</h1>
+        <p className="text-base font-semibold mb-2 text-white">Links</p>
         <LinksSection title="Tech Blog" links={techBlogLinks} />
         <LinksSection title="Events" links={eventLinks} />
         <LinksSection title="Talks" links={talkLinks} />

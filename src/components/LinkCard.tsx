@@ -36,7 +36,7 @@ export function LinkCard({ url, children, ogpData, size = "small" }: LinkCardPro
     <a
       href={url}
       target="_blank"
-      className={`block border border-gray-600 rounded ${isLarge ? "rounded-lg p-4" : "p-3"} bg-[#15171a] hover:bg-gray-600/10 transition-colors no-underline`}
+      className={`block ${isLarge ? "p-4" : "p-3"} no-underline`}
     >
       <div className={`flex ${isLarge ? "gap-4" : "gap-3"}`}>
         {ogpData.image && (
