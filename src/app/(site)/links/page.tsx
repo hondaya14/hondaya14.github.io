@@ -16,15 +16,19 @@ export default function LinksPage() {
     { url: "https://engineering.linecorp.com/ja/blog/internship2021-hackathon" },
   ];
 
-  const talkLinks: LinkItem[] = [{ url: "https://freee.connpass.com/event/304573/" }];
+  const talkLinks: LinkItem[] = [
+    { url: "https://ccc2025fall.java-users.jp/" },
+    { url: "https://speakerdeck.com/hondaya14/the-pitfall-of-kotlins-null-safety" },
+    { url: "https://freee.connpass.com/event/304573/" },
+  ];
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto space-y-8">
         <p className="text-base font-semibold mb-2 text-white">Links</p>
         <LinksSection title="Tech Blog" links={techBlogLinks} />
-        <LinksSection title="Events" links={eventLinks} />
         <LinksSection title="Talks" links={talkLinks} />
+        <LinksSection title="Events" links={eventLinks} />
       </div>
     </div>
   );
