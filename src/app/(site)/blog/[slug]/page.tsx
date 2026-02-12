@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar } from "lucide-react";
 import type { Metadata } from "next";
@@ -98,62 +97,51 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, "0")}/${String(publishDate.getDate()).padStart(2, "0")}`;
 
     return (
-      <div className="min-h-screen bg-[#101114] text-white font-sans">
-        <main className="py-12">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Left Sidebar */}
-            <aside className="hidden lg:block w-64 shrink-0"></aside>
+      <div className="py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left Sidebar */}
+          <aside className="hidden lg:block w-64 shrink-0"></aside>
 
-            {/* Main Content */}
-            <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
-              <article className="ml-auto mr-auto">
-                <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={article.publishedAt}>{formattedDate}</time>
-                  {article.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-[#222222] text-xs rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <h1 className={`text-3xl font-semibold mb-6 text-white ${LINE_SEED.className}`}>
-                  {article.title}
-                </h1>
+          {/* Main Content */}
+          <div className="ml-auto mr-auto">
+            <article className="ml-auto mr-auto">
+              <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={article.publishedAt}>{formattedDate}</time>
+                {article.tags.map((tag) => (
+                  <span key={tag} className="text-xs">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h1 className={`text-base font-semibold mb-2 text-red-400 ${LINE_SEED.className}`}>
+                {article.title}
+              </h1>
 
-                {article.eyecatch?.url && (
-                  <div className="flex justify-center mb-6">
-                    <div className="w-1/2 max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
-                      <ExpandableImage
-                        src={article.eyecatch.url}
-                        alt=""
-                        width={article.eyecatch.width}
-                        height={article.eyecatch.height}
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    </div>
+              {article.eyecatch?.url && (
+                <div className="flex justify-center mb-6">
+                  <div className="w-1/2 max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
+                    <ExpandableImage
+                      src={article.eyecatch.url}
+                      alt=""
+                      width={article.eyecatch.width}
+                      height={article.eyecatch.height}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                )}
-
-                <div className="blog-content text-gray-300 leading-loose">
-                  <MDXRemote source={article.content} components={mdxCodeComponents} />
                 </div>
-              </article>
-            </div>
+              )}
 
-            {/* Right Sidebar */}
-            <aside className="hidden lg:block w-64 shrink-0"></aside>
+              <div className="blog-content text-gray-300 leading-loose">
+                <MDXRemote source={article.content} components={mdxCodeComponents} />
+              </div>
+            </article>
           </div>
-          <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
-        </main>
 
-        <footer className="py-8 border-t border-gray-600 text-center">
-          <p className="text-sm text-white">
-            &copy; 2024 hondaya.co. All rights reserved.{" "}
-            <Link href="/privacy" className="underline text-white">
-              Privacy Policy
-            </Link>
-          </p>
-        </footer>
+          {/* Right Sidebar */}
+          <aside className="hidden lg:block w-64 shrink-0"></aside>
+        </div>
+        <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
       </div>
     );
   } catch (e) {
