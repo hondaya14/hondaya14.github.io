@@ -1,3 +1,4 @@
+[![Verify build](https://github.com/hondaya14/hondaya14.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/hondaya14/hondaya14.github.io/actions/workflows/ci.yml)
 # hondaya14.github.io
 
 This repository contains the source code for [hondaya.co](https://hondaya.co), Yasuhisa Honda's personal website and blog. The site is built with **Next.js** and styled with **Tailwind CSS**. the project is designed to be statically exported for deployment to GitHub Pages.
