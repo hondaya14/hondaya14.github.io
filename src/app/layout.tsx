@@ -25,7 +25,9 @@ export default function RootLayout({
         {/* PWA Manifest & Apple settings */}
         <PWAHead />
       </head>
-      <body className={`${JETBRAINS_MONO.className} ${NOTO_SANS_JP.variable} antialiased`}>
+      <body
+        className={`${JETBRAINS_MONO.className} ${JETBRAINS_MONO.variable} ${NOTO_SANS_JP.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

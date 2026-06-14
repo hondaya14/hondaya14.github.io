@@ -5,8 +5,10 @@ import Script from "next/script";
 import { ExpandableImage } from "@/components/ExpandableImage";
 import { LINE_SEED } from "@/lib/fonts";
 import { getContentMasterArticle } from "@/lib/article";
+import { getTagColor } from "@/lib/tagColor";
 import { mdxCodeComponents } from "@/components/MdxCode";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import fs from "fs";
 
 export async function generateStaticParams() {
@@ -103,18 +105,31 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           <aside className="hidden lg:block w-64 shrink-0"></aside>
 
           {/* Main Content */}
-          <div className="ml-auto mr-auto">
+          <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
             <article className="ml-auto mr-auto">
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <Breadcrumbs
+                  items={[
+                    { label: "Home", href: "/" },
+                    { label: "Blog", href: "/blog" },
+                    { label: article.title },
+                  ]}
+                  className="text-gray-400"
+                />
+              </div>
               <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <time dateTime={article.publishedAt}>{formattedDate}</time>
                 {article.tags.map((tag) => (
-                  <span key={tag} className="text-xs">
+                  <span
+                    key={tag}
+                    className={`px-3 py-1 bg-gray-800/50 text-xs rounded ${getTagColor(tag)}`}
+                  >
                     {tag}
                   </span>
                 ))}
               </div>
-              <h1 className={`text-base font-semibold mb-2 text-red-400 ${LINE_SEED.className}`}>
+              <h1 className={`text-3xl font-semibold mb-6 text-white ${LINE_SEED.className}`}>
                 {article.title}
               </h1>
 
