@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
-import { Calendar, ArrowLeft } from "lucide-react";
+import { Calendar } from "lucide-react";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ExpandableImage } from "@/components/ExpandableImage";
 import { LINE_SEED } from "@/lib/fonts";
 import { getContentMasterArticle } from "@/lib/article";
+import { getTagColor } from "@/lib/tagColor";
 import { mdxCodeComponents } from "@/components/MdxCode";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -103,39 +104,34 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           {/* Left Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0"></aside>
 
-            {/* Main Content */}
-            <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
-              <article className="ml-auto mr-auto">
-                <div className="mb-4 flex items-center justify-between gap-4">
-                  <Breadcrumbs
-                    items={[
-                      { label: "Home", href: "/" },
-                      { label: "Blog", href: "/blog" },
-                      { label: article.title },
-                    ]}
-                    className="text-gray-400"
-                  />
-                  <Link
-                    href="/blog"
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-gray-700 text-gray-200 no-underline hover:bg-gray-800"
-                    aria-label="一覧に戻る"
+          {/* Main Content */}
+          <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
+            <article className="ml-auto mr-auto">
+              <div className="mb-4 flex items-center justify-between gap-4">
+                <Breadcrumbs
+                  items={[
+                    { label: "Home", href: "/" },
+                    { label: "Blog", href: "/blog" },
+                    { label: article.title },
+                  ]}
+                  className="text-gray-400"
+                />
+              </div>
+              <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={article.publishedAt}>{formattedDate}</time>
+                {article.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className={`px-3 py-1 bg-gray-800/50 text-xs rounded ${getTagColor(tag)}`}
                   >
-                    <ArrowLeft className="h-4 w-4" />
-                    <span>一覧に戻る</span>
-                  </Link>
-                </div>
-                <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <time dateTime={article.publishedAt}>{formattedDate}</time>
-                  {article.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-[#222222] text-xs rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <h1 className={`text-3xl font-semibold mb-6 text-white ${LINE_SEED.className}`}>
-                  {article.title}
-                </h1>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h1 className={`text-3xl font-semibold mb-6 text-white ${LINE_SEED.className}`}>
+                {article.title}
+              </h1>
 
               {article.eyecatch?.url && (
                 <div className="flex justify-center mb-6">
@@ -159,9 +155,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
           {/* Right Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0"></aside>
-        </div>
+        </div >
         <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
-      </div>
+      </div >
     );
   } catch (e) {
     console.log(e);

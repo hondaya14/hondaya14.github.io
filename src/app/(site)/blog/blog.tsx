@@ -3,32 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/lib/type/article";
-
-function getTagColor(tag: string): string {
-  // タグの文字列からハッシュを計算
-  let hash = 0;
-  for (let i = 0; i < tag.length; i++) {
-    hash = tag.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  // 蛍光カラーのリスト
-  const colors = [
-    "text-yellow-400",
-    "text-green-400",
-    "text-cyan-400",
-    "text-pink-400",
-    "text-orange-400",
-    "text-lime-400",
-    "text-emerald-400",
-    "text-teal-400",
-    "text-blue-400",
-    "text-violet-400",
-  ];
-
-  // ハッシュ値から色を選択（同じタグには常に同じ色）
-  const index = Math.abs(hash) % colors.length;
-  return colors[index];
-}
+import { getTagColor } from "@/lib/tagColor";
 
 function Thumbnail(article: Article): React.JSX.Element {
   return (
