@@ -64,13 +64,13 @@ export async function generateMetadata({
         images:
           article.eyecatch?.url && ogpDimensions
             ? [
-              {
-                url: article.eyecatch.url,
-                width: ogpDimensions.width,
-                height: ogpDimensions.height,
-                alt: article.title,
-              },
-            ]
+                {
+                  url: article.eyecatch.url,
+                  width: ogpDimensions.width,
+                  height: ogpDimensions.height,
+                  alt: article.title,
+                },
+              ]
             : undefined,
       },
       twitter: {
@@ -155,9 +155,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
           {/* Right Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0"></aside>
-        </div >
+        </div>
         <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
-      </div >
+      </div>
     );
   } catch (e) {
     console.log(e);
