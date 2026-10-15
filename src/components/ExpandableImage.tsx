@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 
@@ -14,41 +14,73 @@ interface ExpandableImageProps {
 
 export function ExpandableImage({ src, alt, width, height, className }: ExpandableImageProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isExpanded) return;
+    const trigger = triggerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsExpanded(false);
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closeRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
+    };
+  }, [isExpanded]);
 
   return (
     <>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={`cursor-pointer ${className}`}
+      <button
+        ref={triggerRef}
+        type="button"
+        className="expandable-trigger"
+        aria-label={`画像を拡大: ${alt || "Image"}`}
         onClick={() => setIsExpanded(true)}
-        unoptimized={true}
-      />
-
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={className}
+          unoptimized
+        />
+      </button>
       {isExpanded && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={alt || "Image preview"}
+          className="image-dialog"
           onClick={() => setIsExpanded(false)}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]">
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <Image
-              src={src}
-              alt={alt}
-              width={0}
-              height={0}
-              className="w-auto h-auto max-w-full max-h-full object-contain"
-              style={{ width: "auto", height: "auto" }}
-              unoptimized={true}
-            />
-          </div>
+          <button
+            ref={closeRef}
+            type="button"
+            aria-label="画像を閉じる"
+            className="image-dialog-close"
+            onClick={() => setIsExpanded(false)}
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="image-dialog-photo"
+            unoptimized
+          />
         </div>
       )}
     </>

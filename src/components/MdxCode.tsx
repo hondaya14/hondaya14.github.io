@@ -1,32 +1,16 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock } from "@/components/CodeBlock";
 
-// function extractCodeChild(node: React.ReactNode) {
-//   const arr = React.Children.toArray(node)
-//   const codeEl = arr.find(
-//     (n) => React.isValidElement(n) && (n as React.ReactElement).type === 'code'
-//   ) as React.ReactElement | undefined
-//   if (!codeEl) return null
-//   const className = (codeEl.props.className || '') as string
-//   const match = className.match(/language-([^\s]+)/)
-//   const language = match?.[1] ?? null
-//   const code = String(codeEl.props.children ?? '')
-//   return { language, code }
-// }
-//
-// export function PreWithSyntax(props: React.HTMLAttributes<HTMLPreElement>) {
-//   const extracted = extractCodeChild(props.children)
-//   if (!extracted) return <pre {...props} />
-//   return (
-//     <CodeBlock language={extracted.language}>
-//       {extracted.code.replace(/\n$/, '')}
-//     </CodeBlock>
-//   )
-// }
+function PreWithSyntax({ children }: React.HTMLAttributes<HTMLPreElement>) {
+  if (!React.isValidElement(children)) return <pre>{children}</pre>;
+  const props = children.props as React.HTMLAttributes<HTMLElement>;
+  const language = /language-([^\s]+)/.exec(props.className || "")?.[1] ?? null;
+  return (
+    <CodeBlock language={language}>{String(props.children ?? "").replace(/\n$/, "")}</CodeBlock>
+  );
+}
 
 export function InlineCode(props: React.HTMLAttributes<HTMLElement>) {
   const className = (props.className || "") as string;
@@ -92,7 +76,8 @@ function MdxLink({ href, children, className, title, id, ...props }: MdxLinkProp
 }
 
 export const mdxCodeComponents: MDXComponents = {
-  // pre: PreWithSyntax as never,
+  h1: ({ children, ...props }) => <h2 {...props}>{children}</h2>,
+  pre: PreWithSyntax,
   a: MdxLink as never,
   code: InlineCode as never,
   Link: MdxLink as never,

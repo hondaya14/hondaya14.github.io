@@ -24,7 +24,7 @@ export default function RootLayout({
         <PWAHead />
       </head>
       <body
-        className={`${JETBRAINS_MONO.className} ${JETBRAINS_MONO.variable} ${NOTO_SANS_JP.variable} antialiased`}
+        className={`${NOTO_SANS_JP.className} ${JETBRAINS_MONO.variable} ${NOTO_SANS_JP.variable} antialiased`}
       >
         {/* Google AdSense */}
         <GoogleAdSense />

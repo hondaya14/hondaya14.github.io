@@ -5,39 +5,24 @@ import remarkGfm from "remark-gfm";
 
 interface ResumeContentProps {
   content: string;
+  hideTitle?: boolean;
 }
 
-export function ResumeContent({ content }: ResumeContentProps) {
+export function ResumeContent({ content, hideTitle = false }: ResumeContentProps) {
+  const body = hideTitle ? content.replace(/^# [^\r\n]*(?:\r?\n|$)/, "") : content;
   return (
-    <div className="prose prose-sm prose-invert max-w-none resume-content">
+    <div className="prose resume-content">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: ({ children }) => (
-            <p className="text-base font-semibold mb-2 text-green-400">{children}</p>
-          ),
-          h2: ({ children }) => (
-            <p className="text-sm font-semibold mb-2 mt-4 text-green-400">{children}</p>
-          ),
-          h3: ({ children }) => (
-            <p className="text-sm font-medium mb-1 mt-3 text-gray-300">{children}</p>
-          ),
-          h4: ({ children }) => <p className="text-sm mb-1 mt-2 text-gray-400">{children}</p>,
-          h5: ({ children }) => <p className="text-xs mb-1 mt-2 text-gray-500">{children}</p>,
-          h6: ({ children }) => <p className="text-xs mb-1 mt-2 text-gray-500">{children}</p>,
           a: ({ href, children }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-400 hover:text-green-300"
-            >
+            <a href={href} target="_blank" rel="noopener noreferrer">
               {children}
             </a>
           ),
         }}
       >
-        {content}
+        {body}
       </ReactMarkdown>
     </div>
   );

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import hljs from "highlight.js";
 import * as cheerio from "cheerio";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 import { LinkCard } from "./LinkCard";
 import { fetchAmazonProductInfo, isAmazonUrl, type AmazonProductInfo } from "@/lib/amazon";
 
@@ -132,12 +132,7 @@ export function HTMLContent({ content }: HTMLContentProps) {
         '<div class="twitter-placeholder">Loading Twitter embed...</div>',
       );
 
-    return (
-      <div
-        className="prose prose-invert max-w-none"
-        dangerouslySetInnerHTML={{ __html: serverContent }}
-      />
-    );
+    return <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: serverContent }} />;
   }
 
   const renderContent = () => {
@@ -166,5 +161,5 @@ export function HTMLContent({ content }: HTMLContentProps) {
     return result;
   };
 
-  return <div className="prose prose-invert max-w-none">{renderContent()}</div>;
+  return <div className="prose max-w-none">{renderContent()}</div>;
 }

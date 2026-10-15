@@ -2,7 +2,6 @@
 
 import React from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { darcula as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import java from "react-syntax-highlighter/dist/esm/languages/prism/java";
 import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
 import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
@@ -22,6 +21,24 @@ SyntaxHighlighter.registerLanguage("bash", bash);
 SyntaxHighlighter.registerLanguage("diff", diff);
 SyntaxHighlighter.registerLanguage("json", json);
 SyntaxHighlighter.registerLanguage("kotlin", kotlin);
+
+const theme: Record<string, React.CSSProperties> = {
+  'code[class*="language-"]': { color: "#202624", whiteSpace: "pre" },
+  'pre[class*="language-"]': { color: "#202624", whiteSpace: "pre" },
+  comment: { color: "#626a66" },
+  prolog: { color: "#626a66" },
+  cdata: { color: "#626a66" },
+  keyword: { color: "#35665e" },
+  operator: { color: "#35665e" },
+  string: { color: "#914d35" },
+  "attr-value": { color: "#914d35" },
+  number: { color: "#79527d" },
+  boolean: { color: "#79527d" },
+  function: { color: "#395d82" },
+  "class-name": { color: "#395d82" },
+  inserted: { color: "#35665e" },
+  deleted: { color: "#914d35" },
+};
 
 type CodeBlockProps = {
   language?: string | null;
@@ -50,54 +67,29 @@ export function CodeBlock({ language, children, inline = false }: CodeBlockProps
   };
   const normalized = language ? (langMap[language] ?? language) : undefined;
   if (inline) {
-    return (
-      <code className="bg-gray-800/60 text-gray-100 px-1.5 py-0.5 rounded whitespace-pre-wrap text-[0.9em]">
-        {children}
-      </code>
-    );
+    return <code className="whitespace-pre-wrap">{children}</code>;
   }
 
   return (
-    <div
-      className="ml-auto mr-auto w-2/3 my-3 overflow-hidden rounded-lg"
-      style={{ borderColor: "#2f3336" }}
-    >
-      <div
-        className="flex items-center justify-between px-3 py-1 text-xs"
-        style={{ background: "#3c3f41", color: "#e0e0e0", borderBottom: "1px solid #2f3336" }}
-      >
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block h-2 w-2 rounded-full" style={{ background: "#ff5f56" }} />
-          <span className="inline-block h-2 w-2 rounded-full" style={{ background: "#ffbd2e" }} />
-          <span className="inline-block h-2 w-2 rounded-full" style={{ background: "#27c93f" }} />
+    <div className="code-block">
+      {normalized && (
+        <div className="code-block-header" aria-label="code language">
+          {normalized}
         </div>
-        {normalized && (
-          <span aria-label="code language" className="tracking-wide" style={{ opacity: 0.8 }}>
-            {normalized}
-          </span>
-        )}
-      </div>
+      )}
       <SyntaxHighlighter
         language={normalized}
         style={theme}
-        wrapLongLines
         customStyle={{
           margin: 0,
           padding: "1rem",
-          background: "#2b2b2b",
+          background: "#f5f7f6",
           fontSize: "0.9rem",
           lineHeight: 1.6,
         }}
-        lineNumberStyle={{
-          color: "#8a8a8a",
-          paddingRight: "12px",
-          marginRight: "12px",
-          borderRight: "1px solid #3c3f41",
-        }}
         codeTagProps={{
           style: {
-            fontFamily:
-              "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+            fontFamily: "var(--font-jetbrains-mono), monospace",
           },
         }}
       >

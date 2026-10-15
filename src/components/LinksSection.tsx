@@ -21,9 +21,9 @@ export default async function LinksSection({ title, links }: LinksSectionProps) 
   );
 
   return (
-    <section className="space-y-4">
-      <p className="text-sm font-semibold mb-2 mt-4 text-white">{title}</p>
-      <div className="space-y-4">
+    <section className="links-section">
+      <h2>{title}</h2>
+      <div className="link-list">
         {linksWithOGP.map((link) => (
           <LinkCard key={link.url} url={link.url} ogpData={link.ogpData} size="large">
             {link.label}
