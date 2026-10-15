@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ResumeContent } from "@/components/ResumeContent";
+import { PageHero } from "@/components/PageHero";
 
 interface ResumePageClientProps {
   contentJa: string;
@@ -11,31 +12,19 @@ interface ResumePageClientProps {
 export function ResumePageClient({ contentJa, contentEn }: ResumePageClientProps) {
   const [lang, setLang] = useState<"ja" | "en">("en");
   const content = lang === "en" ? contentEn : contentJa;
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* Language Toggle */}
-      <div className="flex justify-end gap-4 mb-6">
-        <button
-          onClick={() => setLang("ja")}
-          className={`transition-colors ${
-            lang === "ja" ? "text-green-400" : "text-gray-400 hover:text-white"
-          }`}
-        >
-          JP
-        </button>
-        <button
-          onClick={() => setLang("en")}
-          className={`transition-colors ${
-            lang === "en" ? "text-green-400" : "text-gray-400 hover:text-white"
-          }`}
-        >
-          EN
-        </button>
-      </div>
-      {/* Resume Content */}
-      <div>
-        <ResumeContent content={content} />
+    <div lang={lang}>
+      <PageHero title={lang === "en" ? "Resume" : "履歴書"} photo="winter-walk" position="lower" />
+      <div className="reading-page page-hero-body">
+        <div className="language-toggle" role="group" aria-label="Resume language">
+          <button onClick={() => setLang("ja")} aria-pressed={lang === "ja"} aria-label="日本語">
+            JP
+          </button>
+          <button onClick={() => setLang("en")} aria-pressed={lang === "en"} aria-label="English">
+            EN
+          </button>
+        </div>
+        <ResumeContent content={content} hideTitle />
       </div>
     </div>
   );

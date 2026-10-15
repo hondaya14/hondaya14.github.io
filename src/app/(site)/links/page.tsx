@@ -1,5 +1,6 @@
 import React from "react";
 import LinksSection, { LinkItem } from "@/components/LinksSection";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata = {
   title: "Links",
@@ -23,13 +24,15 @@ export default function LinksPage() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <p className="text-base font-semibold mb-2 text-white">Links</p>
-        <LinksSection title="Tech Blog" links={techBlogLinks} />
-        <LinksSection title="Talks" links={talkLinks} />
-        <LinksSection title="Events" links={eventLinks} />
+    <>
+      <PageHero title="Links" photo="sunset-bridge" />
+      <div className="reading-page page-hero-body">
+        <div className="links-content">
+          <LinksSection title="Tech Blog" links={techBlogLinks} />
+          <LinksSection title="Talks" links={talkLinks} />
+          <LinksSection title="Events" links={eventLinks} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

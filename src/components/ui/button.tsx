@@ -13,9 +13,8 @@ export function Button({
   ...props
 }: ButtonProps) {
   const variantClasses = {
-    default:
-      "bg-gray-800 text-white hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-gray-300",
-    ghost: "bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800",
+    default: "bg-foreground text-background hover:bg-[#35665e]",
+    ghost: "bg-transparent hover:bg-gray-100",
   };
   const sizeClasses = {
     default: "h-10 px-4 py-2",
@@ -25,7 +24,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50",
+        "inline-flex items-center justify-center rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50",
         variantClasses[variant],
         sizeClasses[size],
         className,

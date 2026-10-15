@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation";
-import { Calendar } from "lucide-react";
+import Link from "next/link";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { ExpandableImage } from "@/components/ExpandableImage";
-import { LINE_SEED } from "@/lib/fonts";
 import { getContentMasterArticle } from "@/lib/article";
-import { getTagColor } from "@/lib/tagColor";
 import { mdxCodeComponents } from "@/components/MdxCode";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import fs from "fs";
 
 export async function generateStaticParams() {
@@ -99,63 +96,36 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     const formattedDate = `${publishDate.getFullYear()}/${String(publishDate.getMonth() + 1).padStart(2, "0")}/${String(publishDate.getDate()).padStart(2, "0")}`;
 
     return (
-      <div className="py-12">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left Sidebar */}
-          <aside className="hidden lg:block w-64 shrink-0"></aside>
-
-          {/* Main Content */}
-          <div className="ml-auto mr-auto bg-[#15171a] rounded-lg p-6">
-            <article className="ml-auto mr-auto">
-              <div className="mb-4 flex items-center justify-between gap-4">
-                <Breadcrumbs
-                  items={[
-                    { label: "Home", href: "/" },
-                    { label: "Blog", href: "/blog" },
-                    { label: article.title },
-                  ]}
-                  className="text-gray-400"
-                />
-              </div>
-              <div className="mb-4 text-sm text-gray-300 flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <time dateTime={article.publishedAt}>{formattedDate}</time>
-                {article.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className={`px-3 py-1 bg-gray-800/50 text-xs rounded ${getTagColor(tag)}`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h1 className={`text-3xl font-semibold mb-6 text-white ${LINE_SEED.className}`}>
-                {article.title}
-              </h1>
-
-              {article.eyecatch?.url && (
-                <div className="flex justify-center mb-6">
-                  <div className="w-1/2 max-w-2xl aspect-video bg-[#15171a] rounded overflow-hidden flex items-center justify-center">
-                    <ExpandableImage
-                      src={article.eyecatch.url}
-                      alt=""
-                      width={article.eyecatch.width}
-                      height={article.eyecatch.height}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div className="blog-content text-gray-300 leading-loose">
-                <MDXRemote source={article.content} components={mdxCodeComponents} />
-              </div>
-            </article>
+      <div className="article-detail-page">
+        <article aria-labelledby="article-title">
+          <header className="article-detail-header">
+            <h1 id="article-title" className="article-heading">
+              {article.title}
+            </h1>
+            <div className="article-detail-meta">
+              <time dateTime={article.publishedAt}>{formattedDate}</time>
+              {article.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </header>
+          {article.eyecatch?.url && (
+            <div className="article-eyecatch">
+              <ExpandableImage
+                src={article.eyecatch.url}
+                alt={article.title}
+                width={article.eyecatch.width}
+                height={article.eyecatch.height}
+              />
+            </div>
+          )}
+          <div className="blog-content">
+            <MDXRemote source={article.content} components={mdxCodeComponents} />
           </div>
-
-          {/* Right Sidebar */}
-          <aside className="hidden lg:block w-64 shrink-0"></aside>
-        </div>
+        </article>
+        <nav className="article-detail-navigation" aria-label="Article navigation">
+          <Link href="/blog">← Blog</Link>
+        </nav>
         <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
       </div>
     );
