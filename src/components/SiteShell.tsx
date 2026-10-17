@@ -6,6 +6,8 @@ const socialLinks = [
   { label: "X", href: "https://x.com/hondaya14" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/yasuhisa-honda-5a5470274/" },
   { label: "Speaker Deck", href: "https://speakerdeck.com/hondaya14" },
+  { label: "Filmarks", href: "https://filmarks.com/users/honhon_marks" },
+  { label: "YAMAP", href: "https://yamap.com/users/4591140" },
 ];
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
