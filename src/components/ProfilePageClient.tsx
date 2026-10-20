@@ -17,11 +17,7 @@ export function ProfilePageClient({ contentJa, contentEn }: ProfilePageClientPro
 
   return (
     <div lang={lang}>
-      <PageHero
-        title={lang === "en" ? "Profile" : "プロフィール"}
-        photo="winter-walk"
-        position="lower"
-      />
+      <PageHero title="Profile" photo="winter-walk" position="lower" />
       <div className="reading-page page-hero-body">
         <LanguageToggle language={lang} onChange={setLang} label="Profile language" />
         <div className="prose profile-content">

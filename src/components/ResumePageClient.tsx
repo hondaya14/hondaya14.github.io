@@ -16,11 +16,7 @@ export function ResumePageClient({ contentJa, contentEn }: ResumePageClientProps
   const content = lang === "en" ? contentEn : contentJa;
   return (
     <div lang={lang}>
-      <PageHero
-        title={lang === "en" ? "Resume" : "レジュメ"}
-        photo="winter-walk"
-        position="lower"
-      />
+      <PageHero title="Resume" photo="winter-walk" position="lower" />
       <div className="reading-page page-hero-body">
         <Breadcrumbs
           className="mb-8"
