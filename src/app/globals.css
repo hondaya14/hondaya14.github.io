@@ -517,7 +517,8 @@ blockquote p {
   font-size: 16px;
   margin-top: 48px;
 }
-.resume-content > :first-child {
+.resume-content > :first-child,
+.profile-content > :first-child {
   margin-top: 0;
 }
 .resume-content h3,
@@ -540,6 +541,12 @@ blockquote p {
 }
 .language-toggle button:hover {
   color: var(--accent);
+}
+.profile-resume-link {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
 }
 .links-section {
   margin-bottom: 48px;

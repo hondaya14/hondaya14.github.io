@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const navigation = [
   { href: "/blog", label: "Blog" },
   { href: "/links", label: "Links" },
-  { href: "/resume", label: "Resume" },
+  { href: "/profile", label: "Profile" },
 ];
 
 export function SiteHeader() {
