@@ -27,6 +27,18 @@ async function generateSitemap() {
         changefreq: "weekly",
         priority: "0.6",
       },
+      {
+        url: `${DOMAIN}/profile`,
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: "monthly",
+        priority: "0.7",
+      },
+      {
+        url: `${DOMAIN}/profile/resume`,
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: "monthly",
+        priority: "0.5",
+      },
     ];
 
     const blogPages = contents.articles.map((article) => ({
